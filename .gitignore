@@ -1,0 +1,17 @@
+# Virtual Environment
+venv/
+
+# Local SQLite Database
+db.sqlite3
+
+# Python bytecode/cache directories
+__pycache__/
+*.pyc
+*.py[cod]
+*$py.class
+
+# Local Media uploads
+media/
+
+# Environment secrets and local configurations
+.env

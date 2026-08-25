@@ -11,44 +11,61 @@
     <link rel="stylesheet" href="{% static  'css/style.css' %}">
 </head>
 <body>
-    <nav class="navbar">
-        <!--Logo-->
-        <div class="logo">
-            <a href="/">
-                <img src="{% static 'images\bloghub-logo.svg' %}" alt="BlogHub Logo" class="logo-img">
-            </a>
-        </div>
+    <header>
+        <nav class="navbar">
+            <!--Logo-->
+            <div class="logo">
+                <a href="/">
+                    <img src="{% static 'images/bloghub-logo.svg' %}" alt="BlogHub Logo" class="logo-img">
+                </a>
+            </div>
 
-        <!--Navigation Links-->
-        <ul class="nav-links">
-            <li><a href="/">Home</li>
-            <li><a href="#">Blog</li>
-            <li><a href="#">About</li>
-            <li><a href="#">Contact</li>
-        </ul>
-        
-        <!--Right side pf Navigation bar-->
-        <div class="nav-right">
-            <!-- Search bar-->
-            <input type="text" placeholder="Search..." class="search-box">
+            <!--Navigation Links-->
+            <div class="nav-left-group">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
 
-            {% if user.is_authenticated %}
+                <!-- Search Container-->
+                <div class="nav-search-container">
+                    <input type="text" placeholder="Search..." class="search-box">
+                </div>
+            </div>
 
-                <a href="/profile" class="profile-link">Profile</a>
-                <a href="/logout" class="logout-link">Logout</a>
+            <!--Right side pf Navigation bar-->
+            <div class="nav-right">
 
-            {% else %}
+                {% if user.is_authenticated %}
 
-                <a href="/login" class="login-btn">Login / Signup</a>
+                    <!-- <a href="/profile" class="profile-link">Profile</a> -->
+                    <a href="/profile" class="profile-link">
+                        <span>{{ user.username|default:"Profile" }}</span>
+                    </a>
+                    <a href="/logout" class="logout-link">Logout</a>
 
-            {% endif %}
+                {% else %}
 
-        </div>
-    </nav>
+                    <a href="/login" class="login-btn">Login</a>
+                    <a href="/register" class="login-btn signup-btn">Signup</a>
+
+                {% endif %}
+
+                <!--Hamburger icon stays fixed inside the right side block-->
+                <button class="hamburger" id="menuToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
     <main>
         {% block content %}
         {% endblock %}
     </main>
-    <script src="{%  static 'js/script.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
 </body>
 </html>

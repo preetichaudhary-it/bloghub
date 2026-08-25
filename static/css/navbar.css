@@ -1,4 +1,5 @@
-/* Navbar */
+/* -----------Navbar---------- */
+
 .navbar{
     width: 100%;
     height: 80px;
@@ -13,7 +14,7 @@
     z-index: 1000;
 }
 
-/* Logo */
+/*---------1.Logo ------------ */
 .logo a{
     text-decoration: none;
     font-size: 28px;
@@ -27,10 +28,17 @@
     display: block;
 }
 
+/*-------2. Left group for links and search horizontally--*/
+.nav-left-group{
+    display: flex;
+    align-items: center;
+    /* margin-right: auto; */
+}
+
 /* Center Links */
 .nav-links{
     display: flex;
-    gap: 30px;
+    gap: 35px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -38,7 +46,8 @@
 
 .nav-links a{
     text-decoration: none;
-    color: #222;
+    /* color: #222; */
+    color: #676383;
     font-size: 16px;
     font-weight: 500;
     transition: 0.3s;
@@ -48,11 +57,29 @@
     color: #7b2ff7;
 }
 
-/* Right Section */
-.nav-right{
-    display: flex;
-    align-items: center;
-    gap: 22px;
+/* Active Link Styling */
+.nav-links a.active-link {
+    color: #7b2ff7;
+    font-weight: 700;
+    position: relative;
+}
+
+/* bottom underline indicator */
+.nav-links a.active-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(1);
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #7b2ff7;
+}
+
+/* Search container positioning*/
+.nav-search-container{
+    margin-left: 20px;
+    margin-right: auto;
 }
 
 /* Search */
@@ -62,25 +89,120 @@
     border: 1px solid #ddd;
     border-radius: 25px;
     outline: none;
+    box-sizing: border-box; /* strict height matching with elements*/
+    transition: border-color 0.3s ease;
 }
 
-/* Login Button */
+.search-box:focus{
+    border-color: #7b2ff7;
+}
+
+/*--------------------3. Right Section -------------- */
+.nav-right{
+    display: flex;
+    align-items: center;
+    /* gap: 15px; */
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+/* Base style for BOTH buttons */
 .login-btn{
     text-decoration: none;
-    padding: 9px 22px;
-    border-radius: 25px;
-    background: linear-gradient(135deg,#8e2de2, #4a00e0);
-    color: white;
+    padding: 8px 22px;
+    border-radius: 20px;
     font-weight: 600;
-    transition: 0.3s;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    white-space: nowrap;
 }
 
-.login-btn:hover{
+/* specific for normal LOGIN button*/
+.login-btn:not(.signup-btn){
+    /* background: linear-gradient(135deg,#8e2de2, #4a00e0); */
+    background: #7b2ff7;
+    /* background: #6c3cd2; */
+    color: white;
+    border: 2px solid transparent;
+}
+
+/* specific for SIGNUP button*/
+.login-btn.signup-btn{
+    background: transparent;
+    border: 2px solid #7b2ff7;
+    color: #7b2ff7;
+}
+
+.login-btn:hover, .login-btn.signup-btn:hover{
     transform: translateY(-2px);
 }
 
+
+.login-btn.signup-btn:hover{
+    /* background: #7b2ff7; */
+    /* color: white; */
+    background: #f3edff;
+    color: #6c3cd2;
+}
+
+/*----------4.Profile link styled as a clean interactive token badge */
+.profile-link {
+    text-decoration: none;
+    color: #6C3CD2;               /* Your secondary dark brand purple */
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 14px;
+    background-color: #F3EDFF;    /* Your light accent lavender tint */
+    border-radius: 12px;          /* Premium soft corners */
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.profile-link:hover {
+    background-color: #7B2FF7;    /* Flips to main brand color on hover */
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Logout link styled as a clean minimal link with an underline pop */
+.logout-link {
+    text-decoration: none;
+    color: #676383;               /* Your muted slate gray text */
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+    color: #FF4A4A;               /* Changes to a soft red alert color on hover */
+}
+
+/* Optional: Add a subtle red underline under logout on hover */
+.logout-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1.5px;
+    bottom: 2px;
+    left: 0;
+    background-color: #FF4A4A;
+    transition: transform 0.3s ease;
+}
+
+.logout-link:hover::after {
+    transform: scaleX(1);
+}
+
 /* Profile & Logout Link*/
-.profile-link,
+/* .profile-link,
 .logout-link {
     text-decoration: none;
     color: #222;
@@ -91,7 +213,84 @@
 .profile-link:hover,
 .logout-link:hover {
     color: #7b2ff7;
+} */
+
+
+/* --- Responsive Media Queries --- */
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
+.hamburger span {
+    width: 24px;
+    height: 3px;
+    background-color: #222;
+    transition: 0.3s;
+}
 
+/*----------- Tablet / Mobile Responsive----------------
+-------------------------------------------------------*/
+@media screen and (max-width: 1024px) {
+    .navbar { padding: 0 20px; }
+    .logo-img { height: 45px; }
+    .hamburger { display: flex; }
 
+    /* Hide center links grp */
+    .nav-left-group{
+        display: contents;
+    }
+
+    /* .nav-search-container{
+        display: none;
+    } */
+
+    .nav-links {
+        position: absolute;
+        top: 80px;
+        left: -100%; /* Hidden off-screen by default */
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        gap: 30px;
+        transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        z-index: 999;
+    }
+
+    /* JavaScript will toggle this class to slide the menu into view */
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-right { gap: 24px; }
+    .nav-search-container{ margin-left: 15px; margin-right: 15px; flex-grow: 1; display: flex; justify-content: center;}
+    .search-box { width: 100%; padding: 8px 12px; font-size: 14px; max-width: 240px; }
+    .login-btn { padding: 6px 12px; font-size: 13px; border-radius: 8px; } 
+    .profile-link, .logout-link {  font-size: 13px; }
+
+    @media (max-width: 540px) {
+        .search-box { max-width: 150px;}
+        .nav-right { gap: 16px; }
+    } 
+
+    @media (max-width: 415px) {
+        .signup-btn, .logout-link { display: none; }
+        .search-box { max-width: 110px;}
+        .nav-right { gap: 16px; }
+    }
+
+    /* JavaScript will toggle this class to transform the hamburger into an 'X' */
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+}

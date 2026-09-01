@@ -8,8 +8,19 @@
     font-family:'Poppins',sans-serif;
 }
 
-body{
+body{  /* fixes floating footer issues, spreads nav bar, main, footer into vertical block layout*/
     background:#faf8ff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  /*keep webpage expanded to take up 100% of screen height, even when blog has zero content*/
+}
+
+main{   /* expands content area to push footer down*/
+    flex: 1 0 auto;
+}
+
+.footer{
+    flex-shrink: 0;
 }
 
 :root {
@@ -22,22 +33,4 @@ body{
     --text-heading: #1a162b;
     --text-body: #332f46;
     --text-muted: #676383;
-
-    /* Theme Structural Framework */
-    /* --bg-main: #f8f9fd;
-    --bg-card: #ffffff;
-    --border-subtle: #ececec; */
-    
-    /* Layout Constants */
-    /* --shadow-sm: 0 2px 8px rgba(26, 22, 43, 0.04);
-    --shadow-md: 0 10px 30px rgba(123, 47, 247, 0.06); */
 }
-
-/* :root {
-    --primary-color: #6c3cd2;
-    --primary-hover: #592cb4;
-    --primary-light: #f3edff;
-    --primary-accent: #925eff;
-    --text-dark: #1e1b38;  /* Dark slate for titles */
-    /* --text-muted: #676383;  Soft grey-purple for body text */
-/* }  */

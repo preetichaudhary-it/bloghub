@@ -1,5 +1,6 @@
-/* -----------Navbar---------- */
+/* ========== BlogHub Navbar ================ */
 
+/*---------1. Navbar Layout ------------ */
 .navbar{
     width: 100%;
     height: 80px;
@@ -14,7 +15,7 @@
     z-index: 1000;
 }
 
-/*---------1.Logo ------------ */
+/*--------- 2.Logo ------------ */
 .logo a{
     text-decoration: none;
     font-size: 28px;
@@ -23,22 +24,22 @@
 }
 
 .logo-img{
-    height: 60px;
+    height: 50px;
     width: auto;
     display: block;
+    object-fit: contain;
 }
 
-/*-------2. Left group for links and search horizontally--*/
+/*------- 3. Navigation group for links and search horizontally--*/
 .nav-left-group{
     display: flex;
     align-items: center;
     /* margin-right: auto; */
 }
 
-/* Center Links */
-.nav-links{
+.nav-links{     /* Center Links */
     display: flex;
-    gap: 35px;
+    gap: 30px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -57,15 +58,13 @@
     color: #7b2ff7;
 }
 
-/* Active Link Styling */
-.nav-links a.active-link {
+.nav-links a.active-link {  /* Active Link Styling */
     color: #7b2ff7;
     font-weight: 700;
     position: relative;
 }
 
-/* bottom underline indicator */
-.nav-links a.active-link::after {
+.nav-links a.active-link::after {   /* bottom underline indicator */
     content: '';
     position: absolute;
     width: 100%;
@@ -76,20 +75,19 @@
     background-color: #7b2ff7;
 }
 
-/* Search container positioning*/
+/*----------- 4.Search container -----------*/
 .nav-search-container{
     margin-left: 20px;
     margin-right: auto;
 }
 
-/* Search */
 .search-box{
     width: 180px;
     padding: 8px 15px;
     border: 1px solid #ddd;
     border-radius: 25px;
     outline: none;
-    box-sizing: border-box; /* strict height matching with elements*/
+    box-sizing: border-box; 
     transition: border-color 0.3s ease;
 }
 
@@ -97,7 +95,7 @@
     border-color: #7b2ff7;
 }
 
-/*--------------------3. Right Section -------------- */
+/*--------------------5. Authentication / Right Section -------------- */
 .nav-right{
     display: flex;
     align-items: center;
@@ -106,8 +104,7 @@
     flex-shrink: 0;
 }
 
-/* Base style for BOTH buttons */
-.login-btn{
+.login-btn{     /* Base style for BOTH buttons */
     text-decoration: none;
     padding: 8px 22px;
     border-radius: 20px;
@@ -121,17 +118,14 @@
     white-space: nowrap;
 }
 
-/* specific for normal LOGIN button*/
-.login-btn:not(.signup-btn){
-    /* background: linear-gradient(135deg,#8e2de2, #4a00e0); */
+.login-btn:not(.signup-btn){  /* specific for normal LOGIN button*/
     background: #7b2ff7;
     /* background: #6c3cd2; */
     color: white;
     border: 2px solid transparent;
 }
 
-/* specific for SIGNUP button*/
-.login-btn.signup-btn{
+.login-btn.signup-btn{  /* specific for SIGNUP button*/
     background: transparent;
     border: 2px solid #7b2ff7;
     color: #7b2ff7;
@@ -149,30 +143,29 @@
     color: #6c3cd2;
 }
 
-/*----------4.Profile link styled as a clean interactive token badge */
+/*---------- 6. Profile link & Logout Link  -------------*/
 .profile-link {
     text-decoration: none;
-    color: #6C3CD2;               /* Your secondary dark brand purple */
+    color: #6C3CD2;              
     font-weight: 600;
     font-size: 14px;
     padding: 6px 14px;
-    background-color: #F3EDFF;    /* Your light accent lavender tint */
-    border-radius: 12px;          /* Premium soft corners */
+    background-color: #F3EDFF;    
+    border-radius: 12px;          
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
 }
 
 .profile-link:hover {
-    background-color: #7B2FF7;    /* Flips to main brand color on hover */
+    background-color: #7B2FF7;    
     color: white;
     transform: translateY(-2px);
 }
 
-/* Logout link styled as a clean minimal link with an underline pop */
-.logout-link {
+.logout-link {      /* Logout link */
     text-decoration: none;
-    color: #676383;               /* Your muted slate gray text */
+    color: #676383;              
     font-weight: 500;
     font-size: 14px;
     position: relative;
@@ -181,11 +174,10 @@
 }
 
 .logout-link:hover {
-    color: #FF4A4A;               /* Changes to a soft red alert color on hover */
+    color: #FF4A4A;               
 }
 
-/* Optional: Add a subtle red underline under logout on hover */
-.logout-link::after {
+.logout-link::after {   /* a subtle red underline under logout on hover */
     content: '';
     position: absolute;
     width: 100%;
@@ -201,23 +193,7 @@
     transform: scaleX(1);
 }
 
-/* Profile & Logout Link*/
-/* .profile-link,
-.logout-link {
-    text-decoration: none;
-    color: #222;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.profile-link:hover,
-.logout-link:hover {
-    color: #7b2ff7;
-} */
-
-
-/* --- Responsive Media Queries --- */
-
+/* --------- 7. Mobile Menu -------- */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -231,30 +207,81 @@
 .hamburger span {
     width: 24px;
     height: 3px;
-    background-color: #222;
+    /* background-color: #222; */
+    background-color: #1c1030;
     transition: 0.3s;
 }
 
-/*----------- Tablet / Mobile Responsive----------------
+
+/*---------------- 8. Footer ------------------- */
+.footer{
+    width: 100%;
+    background: #1c1030;
+    padding: 30px 60px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-logo{
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffff;
+}
+
+.footer-logo span{
+    color: #b98bff;
+}
+
+.footer-links{
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.footer-links a{
+    text-decoration: none;
+    color: #d9cfff;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.footer-links a:hover{
+    color: #7b2ff7;
+    /* color: #fff; */
+}
+
+.footer-bottom{
+    margin-top: 20px;
+    font-size: 13px;
+    color: #9c8cc4;
+}
+
+/*----------- 9. Tablet / Mobile Responsive----------------
 -------------------------------------------------------*/
 @media screen and (max-width: 1024px) {
     .navbar { padding: 0 20px; }
     .logo-img { height: 45px; }
     .hamburger { display: flex; }
 
-    /* Hide center links grp */
-    .nav-left-group{
+    .nav-left-group{    /* Hide center links grp */
         display: contents;
     }
-
-    /* .nav-search-container{
-        display: none;
-    } */
 
     .nav-links {
         position: absolute;
         top: 80px;
-        left: -100%; /* Hidden off-screen by default */
+        left: -100%;   /* Hidden off-screen by default */
         width: 100%;
         height: calc(100vh - 80px);
         background: white;
@@ -293,4 +320,20 @@
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+    /*----Footer------*/
+    .footer{
+        padding: 25px 20px;
+    }
+
+    .footer-content{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links{
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

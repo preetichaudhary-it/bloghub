@@ -292,11 +292,13 @@
         transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
         z-index: 999;
+        /* visibility: hidden; */
     }
 
     /* JavaScript will toggle this class to slide the menu into view */
     .nav-links.active {
         left: 0;
+        /* visibility: visible; */
     }
 
     .nav-right { gap: 24px; }

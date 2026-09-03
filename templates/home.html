@@ -1,7 +1,133 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<h2>Welcome to BlogHub</h2>
+
+{% block styles %} 
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+<!-- Hero Section-->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <!-- Hero Text -->
+        <div class="hero-content">
+            <span class="hero-badge">Welcome to BlogHub</span>
+            <h1>Discover Amazing Stories, Ideas & Knowledge<span>Every Day</span></h1>
+            <p class="hero-description">
+                Explore technology, travel, lifestyle, business, education, health, AI, and much more from talented writers around the world.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#blog" class="hero-btn hero-btn-primary">
+                    Explore Blogs
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a> 
+                <a href="#" class="hero-btn hero-btn-secondary">
+                    Write a Blog
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+            <div class="hero-image-box">
+                <img src="{% static 'images/hero_workspace.jpeg' %}" alt="BlogHub Workspace">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!--CATEGORIES SECTION-->
+<section class="categories-section" d="categories">
+    <div class="categories-container">
+
+        <!-- Section Heading-->
+        <div class="categories-heading">
+            <h2>Browse Categories</h2>
+        </div>
+
+        <!-- Categories Grid -->
+        <div class="categories-grid">
+            <!-- Technology -->
+            <a href="#" class="category-card">
+                <span>Technology</span>
+            </a>
+
+            <!-- Artificial Intelligence -->
+            <a href="#" class="category-card">
+                <span>Artificial Intelligence</span>
+            </a>
+
+            <!-- Programming -->
+            <a href="#" class="category-card">
+                <span>Programming</span>
+            </a>
+
+            <!-- Web Development -->
+            <a href="#" class="category-card">
+                <span>Web Development</span>
+            </a>
+
+            <!-- Travel -->
+            <a href="#" class="category-card">
+                <span>Travel</span>
+            </a>
+
+            <!-- Lifestyle -->
+            <a href="#" class="category-card">
+                <span>Lifestyle</span>
+            </a>
+
+            <!-- Health -->
+            <a href="#" class="category-card">
+                <span>Health</span>
+            </a>
+
+            <!-- Education -->
+            <a href="#" class="category-card">
+                <span>Education</span>
+            </a>
+
+            <!-- Business -->
+            <a href="#" class="category-card">
+                <span>Business</span>
+            </a>    
+
+             <!-- Finance -->
+            <a href="#" class="category-card">
+                <span>Finance</span>
+            </a>
+
+            <!-- Food -->
+            <a href="#" class="category-card">
+                <span>Food</span>
+            </a>
+
+            <!-- Sports -->
+            <a href="#" class="category-card">
+                <span>Sports</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- Connect Section -->
+ <section class="connect-section">
+    <div class="connect-container">
+        <div class="connect-text">
+            <h2>Stay Connected with BlogHub</h2>
+            <p>Discover fresh stories, ideas, and knowledge from our community of writers.</p>
+        </div>
+
+        <div class="connect-buttons">
+            <a href="#about" class="connect-btn outline-btn">About Us</a>
+            <a href="#contact" class="connect-btn">Contact Us</a>
+        </div>
+    </div>
+
+ </section>
 {% endblock %} 
-
-

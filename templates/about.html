@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+<!-- About Page Hero section -->
+<section class="about-hero">
+    <div class="about-hero-text">
+        <p class="about-tag">ABOUT US</p>
+        <h1>About BlogHub</h1>
+        <span class="about-underline"></span>
+
+        <p>
+            BlogHub is a simple and modern blogging platform where people can share their ideas, stories, knowledge, and experiences with the world.
+        </p>
+        <p>
+            Our goal is to create a friendly space where readers can discover interesting content and writers can easily create and share their blogs.
+        </p>
+
+        <a href="/register" class="about-cta">Join Our Community &rarr;</a>
+    </div>
+
+    <div class="about-hero-image">
+        <img src="{% static 'images/about_hero.jpeg' %}" alt="Illustration of a BlogHub workspace">
+    </div>
+</section>
+
+<!-- About Features -->
+<section class="about-features">
+    <article class="feature-card">
+        <div class="feature-icon">&#9998;</div>
+        <h3>Write Blogs</h3>
+        <p>Create and publish your stories and share your ideas with the world.</p>
+    </article>
+
+    <article class="feature-card">
+        <div class="feature-icon">&#128214;</div>
+        <h3>Explore</h3>
+        <p>Browse different categories and discover a wide range of blogs.</p>
+    </article>
+
+    <article class="feature-card">
+        <div class="feature-icon">&#128269;</div>
+        <h3>Discover</h3>
+        <p>Find interesting and valuable content that inspires and informs you.</p>
+    </article>
+
+    <article class="feature-card">
+        <div class="feature-icon">&#128101;</div>
+        <h3>Connect</h3>
+        <p>Join our community of writers and readers and grow together.</p>
+    </article>
+</section>
+
+<!-- About Bottom -->
+<section class="about-banner">
+    <p>&hearts; <strong>Share your story. Inspire others.</strong> &hearts;</p>
+    <p class="about-banner-sub">BlogHub is more than just a platform, it's a community.</p>
+</section>
+{% endblock %} 

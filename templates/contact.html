@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+<!-- Contact Page -->
+<section class="contact-hero">
+    <h1>We would Love to Hear From You!</h1>
+    <p class="contact-sub">
+        Have a question, suggestion, or feedback? Get in touch with the BlogHub team. We are always happy to hear from you.
+    </p>
+</section>
+
+<!-- Contact Form -->
+<section class="contact-form-wrapper">
+    <div class="contact-form-card">
+        <h2>Send Us Feedback </h2>
+        <p class="contact-form-desc">
+             Your feedback helps us improve BlogHub and create a better experience for everyone.
+        </p>
+
+        <form method="POST" action="" class="contact-form" id="contactForm">
+            {% csrf_token %}
+
+            <div class="form-row">
+
+                <!-- Row 1: Left Column -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <div class="input-wrap">
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                </div>
+
+                <!-- Row 1: Right Column -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrap">
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+            
+                <!-- Row 2: Full width span -->
+            <div class="form-group full">
+                <label for="subject">Subject</label>
+                <div class="input-wrap">
+                    <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                </div>
+            </div>
+            <!-- Row 2: Full width span -->
+            <div class="form-group full">
+                <label for="message">Message <span class="limit-label">(Limit 200 words)</span></label>
+                <textarea id="message" name="message" maxlength="1600" placeholder="Write your message here..." required></textarea>
+                <p class="word-count"><span id="wordCount">0</span> / 200 words</p>
+            </div>
+            </div>
+
+            <button type="submit" class="contact-submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+</section>
+
+<script src="{% static 'js/contact.js' %}"></script>
+{% endblock %}

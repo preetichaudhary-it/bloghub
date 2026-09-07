@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+<!-- Register Page -->
+<div class="auth-page">
+    <div class="register-container">
+
+        <!-- Register form heading -->
+        <div class="register-form-section">
+            <h1>Create an Account</h1>
+            <p class="register-subtitle">
+                Join us today by entering your details below.
+            </p>
+
+            <!-- Register Form -->
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="register-input-group">
+                    <label>Username</label>
+                    {{ form.username }}
+
+                    {% if form.username.errors %}
+                        <small class="field-error">
+                            {{ form.username.errors.0 }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+                <div class="register-input-group">
+                    <label>Email Address</label>
+                    {{ form.email }}
+
+                    {% if form.email.errors %}
+                        <small class="field-error">
+                            {{ form.email.errors.0 }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+                <div class="register-input-group">
+                    <label>Password</label>
+                    {{ form.password1 }}
+
+                    {% if form.password1.errors %}
+                        <small class="field-error">
+                            {{ form.password1.errors.0 }}
+                        </small>
+                    {% endif %}
+                    
+                </div>
+
+                <div class="register-input-group">
+                    <label>Confirm Password</label>
+                    {{ form.password2 }}
+
+                    {% if form.password2.errors %}
+                        <small class="field-error">
+                            {{ form.password2.errors.0 }}
+                        </small>
+                    {% endif %}
+
+                </div>
+
+                <button type="submit" class="register-submit-btn">
+                    Sign Up
+                </button>
+            </form>
+
+            <p class="login-redirect">
+                Already have an account?
+                <a href="/login">
+                    Login
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

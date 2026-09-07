@@ -1,0 +1,102 @@
+/* Register Page */
+.auth-page{
+    min-height:calc(100vh - 80px);
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:30px 20px;
+}
+.register-container{
+    width:100%;
+    max-width:500px;
+    display:flex;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(124,58,237,0.15);
+}
+
+.register-form-section{
+    width: 100%;
+    /* flex:1; */
+    padding:40px;
+}
+.register-form-section h1{
+    display:block;
+    color:#5b21b6;
+    font-size:2.5rem;
+    font-weight: 700;
+    margin-bottom:9px;
+}
+.register-subtitle{
+    color:#666;
+    margin-bottom:25px;
+}
+
+/* Inputs */
+.register-input-group{
+    margin-bottom:15px;
+}
+.register-input-group label{
+    display:block;
+    font-weight:600;
+    margin-bottom:8px;
+}
+.register-input-group input{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#eef5fb;
+}
+
+/* Button */
+.register-submit-btn{
+    width:100%;
+    border:none;
+    padding:12px;
+    margin-top:10px;
+    border-radius:12px;
+    cursor:pointer;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    background: #7b2ff7;
+}
+.register-submit-btn:hover{
+    opacity:.95;
+}
+
+/* Bottom Link */
+.login-redirect{
+    text-align:center;
+    margin-top:20px;
+}
+.login-redirect a{
+    color:#7b2ff7;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* errors */
+.field-error{
+    display:block;
+    margin-top: 5px;
+    color: #dc2626;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .register-container{
+        flex-direction:column;
+    }
+    .register-form-section{
+        padding:30px;
+    }
+    .register-form-section h1{
+        font-size:2.3rem;
+    }
+}

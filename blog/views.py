@@ -89,3 +89,9 @@ def login_view(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+def logout_view(request):
+    logout(request)
+
+    messages.success(request, "You have been logged out successfully.")
+    return redirect('home')

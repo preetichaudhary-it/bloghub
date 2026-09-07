@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{%  static 'css/login.css' %}">
+{% endblock %}
+
+<!-- Login Page -->
+<div class="auth-page">
+    <div class="login-container">
+
+        <!-- Left Section -->
+        <div class="login-form-section">
+            <h1>Welcome Back</h1>
+            <p class="subtitle">
+                Login to continue exploring and writing blogs.
+            </p>
+
+            <!-- Login Form -->
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Enter username" value="{{ username }}" required>
+
+                    {% if username_error %}
+                    <small class="field-error">
+                        {{ username_error }}
+                    </small>
+                    {% endif %}
+
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Enter password" required>
+
+                    {% if password_error %}
+                    <small class="field-error">
+                        {{ password_error }}
+                    </small>
+                    {% endif %}
+
+                </div>
+
+                <!-- Wrong username/password -->
+                {% if login_error %}
+                <div class="login-form-error">
+                    {{ login_error }}
+                </div>
+                {% endif %}
+
+                <button type="submit" class="form-login-btn">
+                    Login
+                </button>
+            </form>
+
+            <p class="register-link">
+                Don't have an account?
+                <a href="{% url 'register' %}">
+                    SignUp
+                </a>
+            </p>
+        </div>
+
+        <!-- Right Section -->
+        <div class="login-image-section">
+            <img src="{% static 'images/auth-img.jpg' %}" alt="Login Image">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

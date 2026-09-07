@@ -2,7 +2,8 @@
 .hero{
     width: 100%;
     padding: 20px 0 70px;
-    background: linear-gradient(135deg,#f8f6fc 0%,#e4a7ec 100%);
+    /* background: linear-gradient(135deg,#f8f6fc 0%,#e4a7ec 100%); */
+    background: #f3ecff;
     overflow: hidden;
 }
 
@@ -260,7 +261,7 @@
 
 
 /* ========================================
-   HERO RESPONSIVE */
+   =============RESPONSIVE ================ */
 @media screen and (max-width: 1024px){
     .hero-container{
         grid-template-columns: 1fr;
@@ -312,11 +313,7 @@
     }
     .hero-buttons{
         flex-direction: column;
-        /* width: 100%; */
     }
-    /* .hero-btn{
-        width: 100%;
-    } */
     .hero-image-box{
         display: none;
     }

@@ -1,5 +1,4 @@
 /* ========== BlogHub Navbar ================ */
-
 /*---------1. Navbar Layout ------------ */
 .navbar{
     width: 100%;
@@ -20,14 +19,15 @@
     text-decoration: none;
     font-size: 28px;
     font-weight: 700;
-    color:#7b2ff7
+    color:#7b2ff7;
 }
-
-.logo-img{
-    height: 50px;
-    width: auto;
-    display: block;
-    object-fit: contain;
+.navbar-logo{
+    font-size: 30px;
+    font-weight: 700;
+    color: #1c1030;
+}
+.navbar-logo span{
+    color: #7b2ff7;
 }
 
 /*------- 3. Navigation group for links and search horizontally--*/
@@ -36,7 +36,6 @@
     align-items: center;
     /* margin-right: auto; */
 }
-
 .nav-links{     /* Center Links */
     display: flex;
     gap: 30px;
@@ -44,7 +43,6 @@
     margin: 0;
     padding: 0;
 }
-
 .nav-links a{
     text-decoration: none;
     /* color: #222; */
@@ -53,17 +51,14 @@
     font-weight: 500;
     transition: 0.3s;
 }
-
 .nav-links a:hover{
     color: #7b2ff7;
 }
-
 .nav-links a.active-link {  /* Active Link Styling */
     color: #7b2ff7;
     font-weight: 700;
     position: relative;
 }
-
 .nav-links a.active-link::after {   /* bottom underline indicator */
     content: '';
     position: absolute;
@@ -80,7 +75,6 @@
     margin-left: 20px;
     margin-right: auto;
 }
-
 .search-box{
     width: 180px;
     padding: 8px 15px;
@@ -90,7 +84,6 @@
     box-sizing: border-box; 
     transition: border-color 0.3s ease;
 }
-
 .search-box:focus{
     border-color: #7b2ff7;
 }
@@ -103,7 +96,6 @@
     gap: 20px;
     flex-shrink: 0;
 }
-
 .login-btn{     /* Base style for BOTH buttons */
     text-decoration: none;
     padding: 8px 22px;
@@ -117,28 +109,22 @@
     box-sizing: border-box;
     white-space: nowrap;
 }
-
-.login-btn:not(.signup-btn){  /* specific for normal LOGIN button*/
+.login-btn:not(.signup-btn){  /* specific for LOGIN button*/
     background: #7b2ff7;
     /* background: #6c3cd2; */
     color: white;
     border: 2px solid transparent;
 }
-
 .login-btn.signup-btn{  /* specific for SIGNUP button*/
     background: transparent;
     border: 2px solid #7b2ff7;
     color: #7b2ff7;
 }
-
 .login-btn:hover, .login-btn.signup-btn:hover{
     transform: translateY(-2px);
 }
 
-
 .login-btn.signup-btn:hover{
-    /* background: #7b2ff7; */
-    /* color: white; */
     background: #f3edff;
     color: #6c3cd2;
 }
@@ -156,13 +142,11 @@
     display: inline-flex;
     align-items: center;
 }
-
 .profile-link:hover {
     background-color: #7B2FF7;    
     color: white;
     transform: translateY(-2px);
 }
-
 .logout-link {      /* Logout link */
     text-decoration: none;
     color: #676383;              
@@ -172,12 +156,10 @@
     padding: 6px 0;
     transition: color 0.3s ease;
 }
-
 .logout-link:hover {
     color: #FF4A4A;               
 }
-
-.logout-link::after {   /* a subtle red underline under logout on hover */
+.logout-link::after {   /* a red underline under logout on hover */
     content: '';
     position: absolute;
     width: 100%;
@@ -188,7 +170,6 @@
     background-color: #FF4A4A;
     transition: transform 0.3s ease;
 }
-
 .logout-link:hover::after {
     transform: scaleX(1);
 }
@@ -203,7 +184,6 @@
     border: none;
     padding: 0;
 }
-
 .hamburger span {
     width: 24px;
     height: 3px;
@@ -211,7 +191,6 @@
     background-color: #1c1030;
     transition: 0.3s;
 }
-
 
 /*---------------- 8. Footer ------------------- */
 .footer{
@@ -221,7 +200,6 @@
     text-align: center;
     margin-bottom: 0px;
 }
-
 .footer-content{
     display: flex;
     justify-content: space-between;
@@ -231,23 +209,19 @@
     max-width: 1100px;
     margin: 0 auto;
 }
-
 .footer-logo{
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
     color: #ffff;
 }
-
 .footer-logo span{
-    color: #b98bff;
+    color: #7b2ff7;
 }
-
 .footer-links{
     display: flex;
     gap: 25px;
     list-style: none;
 }
-
 .footer-links a{
     text-decoration: none;
     color: #d9cfff;
@@ -255,25 +229,20 @@
     font-weight: 500;
     transition: .3s;
 }
-
 .footer-links a:hover{
     color: #7b2ff7;
-    /* color: #fff; */
 }
-
 .footer-bottom{
     margin-top: 20px;
     font-size: 13px;
     color: #9c8cc4;
 }
 
-/*----------- 9. Tablet / Mobile Responsive----------------
--------------------------------------------------------*/
+/*----------- 9. Responsive----------------
+-------------------------------------------*/
 @media screen and (max-width: 1024px) {
     .navbar { padding: 0 20px; }
-    .logo-img { height: 45px; }
     .hamburger { display: flex; }
-
     .nav-left-group{    /* Hide center links grp */
         display: contents;
     }
@@ -292,13 +261,11 @@
         transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
         z-index: 999;
-        /* visibility: hidden; */
     }
 
     /* JavaScript will toggle this class to slide the menu into view */
     .nav-links.active {
         left: 0;
-        /* visibility: visible; */
     }
 
     .nav-right { gap: 24px; }
@@ -327,12 +294,10 @@
     .footer{
         padding: 25px 20px;
     }
-
     .footer-content{
         flex-direction: column;
         text-align: center;
     }
-
     .footer-links{
         gap: 15px;
         flex-wrap: wrap;

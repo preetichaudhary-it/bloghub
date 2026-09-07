@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlogHub</title>
 
+    <!-- global styles-->
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="{% static  'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static  'css/style.css' %}">
@@ -20,7 +21,7 @@
             <!--Logo-->
             <div class="logo">
                 <a href="/">
-                    <img src="{% static 'images/bloghub-logo.svg' %}" alt="BlogHub Logo" class="logo-img">
+                    <p class="navbar-logo">Blog<span>Hub</span></p>
                 </a>
             </div>
 
@@ -29,7 +30,6 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="/">Home</a></li>
                     <li><a href="#">Blogs</a></li>
-                    <!-- <li><a href="#">Categories</a></li> -->
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>

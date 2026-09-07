@@ -106,7 +106,8 @@
     color: #6b6478;
 }
 
-/* Mobile */
+/* ========================================
+   =============RESPONSIVE ================ */
 @media (max-width: 1024px){
     .about-hero{
         flex-direction: column;
@@ -126,7 +127,6 @@
         max-width: 650px;
     }
 }
-
 @media(max-width:600px){
     .about-features{
         grid-template-columns:1fr;

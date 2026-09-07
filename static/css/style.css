@@ -8,11 +8,11 @@
     font-family:'Poppins',sans-serif;
 }
 
-body{  /* fixes floating footer issues, spreads nav bar, main, footer into vertical block layout*/
+body{  
     background:#faf8ff;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;  /*keep webpage expanded to take up 100% of screen height, even when blog has zero content*/
+    min-height: 100vh;  
 }
 
 main{   /* expands content area to push footer down*/
@@ -21,16 +21,4 @@ main{   /* expands content area to push footer down*/
 
 .footer{
     flex-shrink: 0;
-}
-
-:root {
-    /* Theme Action Colors */
-    --brand-purple: #7b2ff7;  /* vibrant purple*/
-    --brand-purple-deep: #6c3cd2; /* deep purple*/
-    --brand-purple-light: #f3edff; /* soft lavender tint*/
-
-    /* Theme Typography */
-    --text-heading: #1a162b;
-    --text-body: #332f46;
-    --text-muted: #676383;
 }

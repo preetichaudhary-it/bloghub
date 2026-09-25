@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
 
-    // Safe Guard Check: Ensure element exist in DOM before binding logic
     if (!menuToggle || !navLinks) return;
 
     // --- Active Link Highlight Logic ---
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     allLinks.forEach(link => {
         const linkPath = link.getAttribute('href');
         
-        // Fixed Match Logic: Stop the homepage link "/" from accidentally matching sub-routes like "/blog"
         if (linkPath === '/' && currentPath === '/') {
             link.classList.add('active-link');
         } else if (linkPath !== '/' && linkPath !== '#' && currentPath.startsWith(linkPath)) {
@@ -28,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.toggle('active');
     });
 
-    // Close the menu is a user clicks an internal link inside menu
+    // Close the menu if a user clicks an internal link inside menu
     navLinks.addEventListener('click', (event) => {
         if (event.target.tagName === 'A'){
             menuToggle.classList.remove('active');

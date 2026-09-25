@@ -254,3 +254,25 @@ def delete_blog(request, pk):
         'blog-detail',
         blog_id=blog.id
     )
+
+def category_blogs(request, category_id):
+
+    category = get_object_or_404(
+        Category,
+        id=category_id
+    )
+
+    blogs = BlogPost.objects.filter(
+        category=category
+    ).order_by('-created_at')
+
+    context = {
+        'category': category,
+        'blogs': blogs
+    }
+
+    return render(
+        request,
+        'blog/category_blogs.html',
+        context
+    )

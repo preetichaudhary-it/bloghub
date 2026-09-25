@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/blog/create_blog.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+{% endblock %}
+
+<section class="create-blog-page">
+    <div class="create-blog-container">
+
+        <!-- Create Blog page header -->
+        <div class="create-blog-header">
+            <div>
+                <h1><span>Create</span> a New Blog</h1>
+                <p>Share your thoughts, ideas and knowledge with the world.</p>
+            </div>
+        </div>
+
+        <!-- Create Blog Card -->
+        <div class="create-blog-card">
+            <h2>Write Your Blog</h2>
+
+            <!-- Create Blog Form -->
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="{{ form.title.id_for_label }}">Title</label>
+                    {{ form.title }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.category.id_for_label }}">Category</label>
+                    {{ form.category }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Cover Image</label>
+                    {{ form.image }}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.content.id_for_label }}">Content</label>
+                    {{ form.content }}
+                </div>
+
+                <!-- Create Blog Actions Publish\Cancel Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        Publish 
+                        <i class="fa-regular fa-paper-plane"></i>
+                    </button>
+                    <a href="{% url 'home' %}" class="btn-submit btn-cancel">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+        
+    </div>  
+</section>
+
+{% endblock %}

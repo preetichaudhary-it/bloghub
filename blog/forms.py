@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import BlogUser
+from .models import BlogUser, BlogPost
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(
@@ -50,3 +50,29 @@ class RegisterForm(UserCreationForm):
         self.fields['password2'].widget.attrs.update({
             'placeholder': 'Confirm password'
         })
+
+
+class BlogPostForm(forms.ModelForm):
+
+    class Meta:
+        model = BlogPost
+
+        fields = [
+            'title',
+            'category',
+            'image',
+            'content',
+        ]
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'placeholder': 'Enter blog title'
+            }),
+
+            'image' : forms.FileInput(),
+
+            'content': forms.Textarea(attrs={
+                'placeholder': 'Write your blog content here...',
+                'rows': 8
+            })
+        }

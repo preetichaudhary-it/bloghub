@@ -2,11 +2,9 @@
 .hero{
     width: 100%;
     padding: 20px 0 70px;
-    /* background: linear-gradient(135deg,#f8f6fc 0%,#e4a7ec 100%); */
     background: #f3ecff;
     overflow: hidden;
 }
-
 /* Hero Container */
 .hero-container{
     width: 90%;
@@ -17,14 +15,12 @@
     align-items: center;
     gap: 50px;
 }
-
 /* HERO CONTENT */
 .hero-content{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-
 /* Welcome Badge */
 .hero-badge{
     display: inline-block;
@@ -37,7 +33,6 @@
     font-weight: 600;
     letter-spacing: 0.4px;
 }
-
 /* Hero Heading */
 .hero-content h1{
     margin: 0 0 20px;
@@ -50,7 +45,6 @@
     display: block;
     color: #6c3cd2;
 }
-
 /* Hero Description */
 .hero-description{
     max-width: 520px;
@@ -59,7 +53,6 @@
     font-size: 16px;
     line-height: 1.7;
 }
-
 /* HERO BUTTONS */
 .hero-buttons{
     display: flex;
@@ -79,7 +72,6 @@
     text-decoration: none;
     transition: all 0.3s ease;
 }
-
 /* Primary Button */
 .hero-btn-primary {
     background-color: #6c3cd2;
@@ -92,7 +84,6 @@
     transform: translateY(-3px);
     box-shadow: 0 12px 25px rgba(108, 60, 210, 0.30);
 }
-
 /* Secondary Button */
 .hero-btn-secondary {
     background-color: transparent;
@@ -123,7 +114,91 @@
     height: auto;
     display:block;
 }
-
+/* ===== LATEST ARTICLES ===== */
+.latest-articles-section{
+    padding: 40px 0 20px;
+    background: #ffffff;
+}
+.latest-articles-container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.latest-articles-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.latest-articles-header h2{
+    font-size: 28px;
+    color: #1e1b38; }
+.view-all-blogs{
+    text-decoration: none;
+    color: #6c3cd2;
+    font-weight: 600; }
+.view-all-blogs i{
+    margin-left: 6px;
+}
+.view-all-blogs:hover{
+    color: #5424b8; }
+.latest-articles-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.latest-blog-card{
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+.latest-blog-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+.latest-blog-image{
+    width: 100%;
+    height: 150px;
+    object-fit: cover; }
+.latest-blog-content{ padding: 18px; }
+.latest-blog-category{
+    display: inline-block;
+    background: #f3ecff;
+    color: #6c3cd2;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.latest-blog-content h3{
+    font-size: 18px;
+    color: #1e1b38;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+.blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 16px;
+}
+.latest-blog-content p{
+    color: #666080;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+.latest-read-more{
+    text-decoration: none;
+    color: #6c3cd2;
+    font-weight: 600;
+}
+.latest-read-more i{ margin-left: 6px;}
 /* ------------CATEGORIES SECTION----------- */
 .categories-section{
     width: 100%;
@@ -169,7 +244,7 @@
 /* CATEGORY CARD */
 .category-card{
     height: 90px;
-    padding: 15px;
+    padding: 8px;
     background-color: #ffffff;
     border: 2px solid #d1bcec;
     border-radius: 12px;
@@ -259,7 +334,6 @@
     color: #ffffff;
 }
 
-
 /* ========================================
    =============RESPONSIVE ================ */
 @media screen and (max-width: 1024px){
@@ -284,6 +358,9 @@
     .hero-image-box:hover{
         transform: none;
     }
+    .latest-articles-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
     .categories-grid { /*category section*/
         grid-template-columns: repeat(4, 1fr);
     }
@@ -296,7 +373,6 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-
 }
 @media (max-width: 600px){
     .hero{
@@ -317,11 +393,25 @@
     .hero-image-box{
         display: none;
     }
+    .latest-articles-header{
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .latest-articles-grid{
+        grid-template-columns: 1fr;
+    }
+    .blog-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
     .categories-section { /* CATEGORY SECTION*/
         padding: 50px 0;
     }
     .categories-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
     .categories-heading h2 {

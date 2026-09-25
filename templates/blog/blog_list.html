@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/blog/blog_list.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+<section class="blog-list-page">
+
+    <!-- Page hero -->
+    <div class="blogs-hero-container">
+        <h1>Explore Our Blogs</h1>
+
+        <p>Discover stories, ideas &amp; knowledge</p>
+
+        <div class="blogs-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search blogs...">
+        </div>
+
+    </div>
+
+    <div class="blog-list-header">
+
+        <div>
+            <h1>All Blogs</h1>
+            <p>Explore blogs shared by the community.</p>
+        </div>
+
+        {% if user.is_authenticated %}
+        <a href="{% url 'create-blog' %}" class="create-blog-btn">
+            Write a Blog
+            <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+        {% endif %}
+
+    </div>
+
+    <!-- All Blogs Container -->
+    <div class="blogs-container">
+
+        {% for blog in blogs %}
+
+        <div class="blog-card">
+
+            {% if blog.image %}
+            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
+            {% endif %}
+
+            <div class="blog-content">
+
+                <span class="blog-category">
+                    {{ blog.category }}
+                </span>
+
+                <h2>{{ blog.title }}</h2>
+
+                <div class="blog-meta">
+                    <span>By {{ blog.author }}</span>
+                    <span>
+                        {{ blog.created_at|date:"d M Y" }}
+                    </span>
+                </div>
+
+                <p class="blog-excerpt">
+                    {{ blog.content|truncatewords:25 }}
+                </p>
+
+                <div class="blog-actions">
+                    <a href="{% url 'blog-detail' blog.id %}" class="read-btn">
+                        Read More
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-state">
+            <h3>No blogs available.</h3>
+            <p>Be the first person to publish a blog.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% if blogs.has_other_pages %}
+
+    <div class="pagination">
+
+        {% if blogs.has_previous %}
+
+        <a href="?page={{ blogs.previous_page_number }}" class="page-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Previous
+        </a>
+
+        {% endif %}
+
+        {% for num in blogs.paginator.page_range %}
+
+        {% if blogs.number == num %}
+
+        <span class="page-number active">
+            {{ num }}
+        </span>
+
+        {% else %}
+
+        <a href="?page={{ num }}" class="page-number">
+            {{ num }}
+        </a>
+
+        {% endif %}
+
+        {% endfor %}
+
+        {% if blogs.has_next %}
+
+        <a href="?page={{ blogs.next_page_number }}" class="page-btn">
+            Next 
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

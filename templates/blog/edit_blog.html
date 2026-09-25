@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/blog/create_blog.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="create-blog-page">
+
+    <!-- Header -->
+
+    <div class="create-blog-header">
+
+        <div>
+            <h1>Edit <span>Blog</span></h1>
+
+            <p>
+                Update your existing blog post.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Form Card -->
+
+    <div class="create-blog-card">
+
+        <h2>Edit Blog</h2>
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Title</label>
+                {{ form.title }}
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                {{ form.category }}
+            </div>
+
+            <div class="form-group">
+
+                <label>Cover Image</label>
+
+                {% if blog.image %}
+                <div class="current-image-box">
+
+                    <img src="{{ blog.image.url }}"
+                        alt="Current Image">
+
+                    <p>Current Cover Image</p>
+
+                </div>
+                {% endif %}
+
+                <label>Change</label>
+                {{ form.image }}
+
+            </div>
+
+            <div class="form-group">
+                <label>Content</label>
+                {{ form.content }}
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit" class="btn-submit">
+                    Update Blog
+                </button>
+
+                <a href="{% url 'blog-detail' blog.id %}"
+                   class="btn-submit btn-cancel">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import BlogPost, Category
 from django.core.paginator import Paginator
-
+from django.db.models import Count
 
 # Create your views here.
 def home(request):
@@ -149,20 +149,49 @@ def create_blog(request):
 
 def blog_list(request):
 
-    blog_posts = BlogPost.objects.all().order_by('-created_at')
+    categories = Category.objects.all()
 
-    paginator = Paginator(blog_posts, 6)
+    category_id = request.GET.get('category')
+
+    blog_posts = BlogPost.objects.all().order_by(
+        '-created_at'
+    )
+
+    current_category = None
+
+    if category_id:
+
+        blog_posts = blog_posts.filter(
+            category_id=category_id
+        )
+
+        current_category = Category.objects.get(
+            id=category_id
+        )
+
+    blog_count = blog_posts.count()
+
+    paginator = Paginator(
+        blog_posts,
+        6
+    )
 
     page_number = request.GET.get('page')
 
     blogs = paginator.get_page(page_number)
 
+    context = {
+        'blogs': blogs,
+        'categories': categories,
+        'selected_category': category_id,
+        'current_category': current_category,
+        'blog_count': blog_count,
+    }
+
     return render(
         request,
         'blog/blog_list.html',
-        {
-            'blogs': blogs
-        }
+        context
     )
 
 def blog_detail(request, blog_id):

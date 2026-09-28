@@ -12,21 +12,48 @@
     <!-- Page hero -->
     <div class="blogs-hero-container">
         <h1>Explore Our Blogs</h1>
-
         <p>Discover stories, ideas &amp; knowledge</p>
+    </div>
 
-        <div class="blogs-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search blogs...">
-        </div>
+    <div class="category-filter-bar">
+        <a href="{% url 'blog-list' %}" class="category-filter-btn {% if not current_category %}active{% endif %}">
+            All
+        </a>
 
+        {% for category in categories %}
+
+        <a href="?category={{ category.id }}"
+        class="category-filter-btn {% if current_category and current_category.id == category.id %}active{% endif %}">
+            {{ category.name }}
+        </a>
+
+        {% endfor %}
     </div>
 
     <div class="blog-list-header">
 
         <div>
-            <h1>All Blogs</h1>
-            <p>Explore blogs shared by the community.</p>
+            {% if current_category %}
+
+            <h1>
+                {{ current_category.name }} Blogs ({{ blog_count }})
+            </h1>
+
+            <p>
+                Explore blogs from this category.
+            </p>
+
+            {% else %}
+
+            <h1>
+                All Blogs ({{ blog_count }})
+            </h1>
+
+            <p>
+                Explore blogs shared by the community.
+            </p>
+
+            {% endif %}
         </div>
 
         {% if user.is_authenticated %}
@@ -46,7 +73,9 @@
         <div class="blog-card">
 
             {% if blog.image %}
-            <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
+            <a href="{% url 'blog-detail' blog.id %}">
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="blog-image">
+            </a>
             {% endif %}
 
             <div class="blog-content">
@@ -55,7 +84,11 @@
                     {{ blog.category }}
                 </span>
 
-                <h2>{{ blog.title }}</h2>
+                <h2>
+                    <a href="{% url 'blog-detail' blog.id %}" class="blog-title-link">
+                        {{ blog.title }}
+                    </a>
+                </h2>
 
                 <div class="blog-meta">
                     <span>By {{ blog.author }}</span>
@@ -90,13 +123,14 @@
 
     </div>
 
+    <!-- Pagination -->
     {% if blogs.has_other_pages %}
 
     <div class="pagination">
 
         {% if blogs.has_previous %}
 
-        <a href="?page={{ blogs.previous_page_number }}" class="page-btn">
+        <a href="?page={{ blogs.previous_page_number }}{% if current_category %}&category={{ current_category.id }}{% endif %}">
             <i class="fa-solid fa-arrow-left"></i>
             Previous
         </a>
@@ -113,7 +147,7 @@
 
         {% else %}
 
-        <a href="?page={{ num }}" class="page-number">
+        <a href="?page={{ num }}{% if current_category %}&category={{ current_category.id }}{% endif %}">
             {{ num }}
         </a>
 
@@ -123,7 +157,7 @@
 
         {% if blogs.has_next %}
 
-        <a href="?page={{ blogs.next_page_number }}" class="page-btn">
+        <a href="?page={{ blogs.next_page_number }}{% if current_category %}&category={{ current_category.id }}{% endif %}">
             Next 
             <i class="fa-solid fa-arrow-right"></i>
         </a>

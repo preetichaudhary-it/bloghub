@@ -76,3 +76,39 @@ class BlogPostForm(forms.ModelForm):
                 'rows': 8
             })
         }
+
+
+class EditProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = BlogUser
+
+        fields = [
+            # 'username',
+            'email',
+            'first_name',
+            'last_name'
+        ]
+
+    def _init_(self, *args, **kwargs):
+
+        super()._init_(*args, **kwargs)
+
+        self.fields['username'].disabled = True
+
+
+    def clean_email(self):
+
+        email = self.cleaned_data['email']
+
+        if BlogUser.objects.exclude(
+            pk=self.instance.pk
+        ).filter(
+            email=email
+        ).exists():
+
+            raise forms.ValidationError(
+                "Email already exists."
+            )
+
+        return email

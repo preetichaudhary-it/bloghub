@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm, BlogPostForm
+from .forms import RegisterForm, BlogPostForm, EditProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -87,7 +87,7 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                messages.success(request, f"Welcome Back, {user.username}!")
+                messages.success(request, f"Welcome, {user.username} !")
                 return redirect('home')
 
             else:
@@ -103,10 +103,6 @@ def login_view(request):
             'login_error': login_error,
         }
     )
-
-@login_required
-def profile(request):
-    return render(request, 'profile.html')
 
 def logout_view(request):
     logout(request)
@@ -274,5 +270,65 @@ def category_blogs(request, category_id):
     return render(
         request,
         'blog/category_blogs.html',
+        context
+    )
+
+
+@login_required
+def profile(request):
+
+    my_blogs = BlogPost.objects.filter(
+        author=request.user
+    ).order_by('-created_at')
+
+    context = {
+        'my_blogs': my_blogs,
+        'my_blog_count': my_blogs.count(),
+        'active_page': 'dashboard'
+    }
+
+    return render(
+        request,
+        'user/profile.html',
+        context
+    )
+
+@login_required
+def edit_profile(request):
+
+    if request.method == 'POST':
+
+        form = EditProfileForm(
+            request.POST,
+            instance=request.user
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                'Profile updated successfully.'
+            )
+
+            return redirect(
+                'profile'
+            )
+
+    else:
+
+        form = EditProfileForm(
+            instance=request.user
+        )
+
+    context = {
+        'form': form,
+        'active_page': 'edit_profile'
+    }
+
+    return render(
+        request,
+        'user/edit_profile.html',
         context
     )

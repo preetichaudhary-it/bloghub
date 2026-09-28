@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/user/profile.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+<section class="dashboard-page">
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+
+            <a href="{% url 'profile' %}"
+               class="sidebar-link {% if active_page == 'dashboard' %}active{% endif %}">
+                <i class="fa-solid fa-table-columns"></i>
+                Dashboard
+            </a>
+
+            <a href="{% url 'create-blog' %}" class="sidebar-link">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Create Blog
+            </a>
+
+            <a href="{% url 'edit-profile' %}"
+                class="sidebar-link {% if active_page == 'edit_profile' %}active{% endif %}">
+                <i class="fa-solid fa-user"></i>
+                Edit Profile
+            </a>
+
+            <a href="{% url 'logout' %}" class="sidebar-link logout-link">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </aside>
+
+        <!-- Content -->
+        <div class="dashboard-content">
+
+            <div class="dashboard-header">
+                <h1>Welcome, {{ user.username }}</h1>
+                <p>Manage your blogs and profile.</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-card">
+                <h3>My Total Blogs</h3>
+                <span>
+                    {{ my_blog_count }}
+                </span>
+                
+            </div>
+
+            <!-- Blogs -->
+            <div class="my-blogs-section">
+
+                <h2>My Blogs</h2>
+
+                <div class="my-blogs-grid">
+
+                    {% for blog in my_blogs %}
+
+                    <div class="my-blog-card">
+
+                        {% if blog.image %}
+                        <img src="{{ blog.image.url }}"
+                            alt="{{ blog.title }}"
+                            class="dashboard-blog-image">
+                        {% endif %}
+
+                        <h3>{{ blog.title }}</h3>
+
+                        <span class="blog-category">
+                            {{ blog.category }}
+                        </span>
+
+                        <p class="blog-date">
+                            {{ blog.created_at|date:"d M Y" }}
+                        </p>
+
+                        <p class="blog-preview">
+                            {{ blog.content|truncatewords:20 }}
+                        </p>
+
+                        <div class="blog-actions">
+
+                            <a href="{% url 'blog-detail' blog.id %}">
+                                View
+                            </a>
+
+                            <a href="{% url 'edit-blog' blog.id %}">
+                                Edit
+                            </a>
+
+                            <form method="POST" action="{% url 'delete-blog' blog.id %}" class="delete-form">
+
+                                {% csrf_token %}
+
+                                <button type="submit" class="delete-blog-btn"
+                                    onclick="return confirm('Are you sure you want to delete this blog?')">
+                                    <!-- <i class="fa-solid fa-trash"></i> -->
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    {% empty %}
+
+                    <div class="empty-dashboard">
+
+                        <h3>No Blogs Yet</h3>
+
+                        <p>
+                            Start sharing your ideas with the BlogHub community.
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

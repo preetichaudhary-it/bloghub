@@ -158,6 +158,18 @@ input[type="checkbox"][name$="-clear"] + label {
 .btn-cancel:hover{ background: #555; }
 .btn-submit:hover{ background-color: #6922dc; }
 
+/*--------Quill Editor Css-----------*/
+#id_content {
+    display: none;
+}
+#editor {
+    min-height: 400px;
+}
+.ql-container.ql-snow { /* scrollable space for content*/
+    height: 450px;
+    overflow-y: auto;
+}
+
 /* ==============RESPONSIVE ===================*/
 @media (max-width: 1024px){
     .create-blog-container{ padding: 25px 15px; }

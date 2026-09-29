@@ -122,6 +122,92 @@
 .delete-blog-btn i, 
 .edit-blog-btn i{ margin-right: 6px; }
 
+/* ==============Quill Editor Css=====================*/
+.blog-detail-text p {       /*---- Paragraph ----*/
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+ /*---- Headings ----*/
+.blog-detail-text h1,      
+.blog-detail-text h2,
+.blog-detail-text h3 {
+    color: #1c1030;
+    margin: 25px 0 12px;
+}
+.blog-detail-text h1 {
+    font-size: 32px;
+}
+.blog-detail-text h2 {
+    font-size: 26px;
+}
+
+.blog-detail-text h3 {
+    font-size: 22px;
+}
+/*---- Lists ----*/
+.blog-detail-text ul,
+.blog-detail-text ol {
+    padding-left: 30px;
+    margin: 15px 0;
+}
+.blog-detail-text li {
+    margin-bottom: 8px;
+}
+/*---- Nested Lists ----*/
+.blog-detail-text ul ul,
+.blog-detail-text ol ol,
+.blog-detail-text ul ol,
+.blog-detail-text ol ul {
+    margin-top: 8px;
+    margin-left: 20px;
+}
+/*---- Links ----*/
+.blog-detail-text a {
+    color: #7b2ff7;
+    text-decoration: underline;
+}
+.blog-detail-text a:hover {
+    color: #6922dc;
+}
+/*---- Blockquotes ----*/
+.blog-detail-text blockquote {
+    border-left: 4px solid #7b2ff7;
+    background: #f8f5ff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    color: #555;
+    font-style: italic;
+}
+/*---- Code Blocks ----*/
+.blog-detail-text pre {
+    background: #1e1e1e;
+    color: #f8f8f2;
+    padding: 18px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+.blog-detail-text code {
+    font-family: Consolas, Monaco, monospace;
+    font-size: 14px;
+}
+/*---- Images ----*/
+.blog-detail-text img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+/*---- indent/outdent ----*/
+.blog-detail-text .ql-indent-1 {     
+    padding-left: 30px;
+}
+.blog-detail-text .ql-indent-2 {
+    padding-left: 60px;
+}
+.blog-detail-text .ql-indent-3 {
+    padding-left: 90px;
+}
+
 /* ======== RESPONSIVE TABLET============== */
 @media (max-width: 1024px) {
     .blog-detail-page { width: 94%; margin-top: 30px; }

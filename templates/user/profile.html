@@ -87,7 +87,7 @@
                         </p>
 
                         <p class="blog-preview">
-                            {{ blog.content|truncatewords:20 }}
+                              {{ blog.content|striptags|safe|truncatewords:20 }}
                         </p>
 
                         <div class="blog-actions">

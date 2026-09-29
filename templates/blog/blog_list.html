@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/blog/blog_list.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
+{% block content %}
 <section class="blog-list-page">
 
     <!-- Page hero -->
@@ -15,6 +15,7 @@
         <p>Discover stories, ideas &amp; knowledge</p>
     </div>
 
+    <!-- Category Filtering -->
     <div class="category-filter-bar">
         <a href="{% url 'blog-list' %}" class="category-filter-btn {% if not current_category %}active{% endif %}">
             All
@@ -23,13 +24,14 @@
         {% for category in categories %}
 
         <a href="?category={{ category.id }}"
-        class="category-filter-btn {% if current_category and current_category.id == category.id %}active{% endif %}">
+            class="category-filter-btn {% if current_category and current_category.id == category.id %}active{% endif %}">
             {{ category.name }}
         </a>
 
         {% endfor %}
     </div>
 
+    <!-- Blog List Header -->
     <div class="blog-list-header">
 
         <div>
@@ -98,7 +100,7 @@
                 </div>
 
                 <p class="blog-excerpt">
-                    {{ blog.content|truncatewords:25 }}
+                      {{ blog.content|striptags|safe|truncatewords:25 }}
                 </p>
 
                 <div class="blog-actions">

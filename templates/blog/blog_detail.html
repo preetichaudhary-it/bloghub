@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block content %}
-
 <section class="blog-detail-page">
 
     <!-- Blog Detail Card -->
@@ -40,9 +39,10 @@
             </div>
 
             <div class="blog-detail-text">
-                {{ blog.content|linebreaks }}
+                  {{ blog.content|safe }}
             </div>
 
+            <!-- Blog Datail Footer -->
             <div class="blog-detail-footer">
 
                 <a href="{% url 'blog-list' %}" class="back-to-blogs">

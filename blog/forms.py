@@ -72,8 +72,7 @@ class BlogPostForm(forms.ModelForm):
             'image' : forms.FileInput(),
 
             'content': forms.Textarea(attrs={
-                'placeholder': 'Write your blog content here...',
-                'rows': 8
+                'id' : 'id_content'
             })
         }
 

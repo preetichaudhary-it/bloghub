@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import BlogUser, BlogPost
+from .models import BlogUser, BlogPost, Contact, Feedback
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(
@@ -111,3 +111,82 @@ class EditProfileForm(forms.ModelForm):
             )
 
         return email
+
+
+class ContactForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact
+        fields = [
+            'name',
+            'email',
+            'subject',
+            'message'
+        ]
+
+        widgets = {
+
+            'name': forms.TextInput(
+                attrs={
+                    'placeholder': 'Enter your name'
+                }
+            ),
+            'email': forms.EmailInput(
+                attrs={
+                    'placeholder': 'Enter your email'
+                }
+            ),
+            'subject': forms.TextInput(
+                attrs={
+                    'placeholder': 'Enter subject'
+                }
+            ),
+            'message': forms.Textarea(
+                attrs={
+                    'placeholder': 'Write your message here...',
+                    'rows': 8
+                }
+            )
+        }
+
+    def clean_message(self):
+
+        message = self.cleaned_data['message']
+        words = len(message.split())
+        if words > 200:
+
+            raise forms.ValidationError(
+                "Maximum 200 words allowed."
+            )
+
+        return message
+
+
+class FeedbackForm(forms.ModelForm):
+
+    class Meta:
+        model = Feedback
+        fields = [
+            'feedback'
+        ]
+
+        widgets = {
+            'feedback': forms.Textarea(
+                attrs={
+                    'placeholder': 'Share your suggestion or feedback...',
+                    'rows': 8
+                }
+            )
+        }
+
+    def clean_feedback(self):
+
+        feedback = self.cleaned_data['feedback']
+        words = len(feedback.split())
+        if words > 200:
+
+            raise forms.ValidationError(
+                "Maximum 200 words allowed."
+            )
+
+        return feedback

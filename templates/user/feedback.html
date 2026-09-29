@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/user/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="contact-hero">
+
+    <h1>Share Your Feedback</h1>
+
+    <p class="contact-sub">
+        Tell us what you like, dislike, or what you would like to see improved in BlogHub.
+    </p>
+
+</section>
+
+<section class="contact-form-wrapper">
+
+    <div class="contact-form-card">
+
+        <h2>Send Feedback</h2>
+
+        <p class="contact-form-desc">
+            Your suggestions help us improve BlogHub.
+        </p>
+
+        <form method="POST" class="contact-form">
+
+            {% csrf_token %}
+
+            <div class="form-row">
+
+                <div class="form-group full">
+                    <label>
+                        Feedback
+                        <span class="limit-label">
+                            (Limit 200 words)
+                        </span>
+                    </label>
+
+                    {{ form.feedback }}
+
+                    <p class="word-count">
+                        <span id="wordCount">0</span> / 200 words
+                    </p>
+                </div>
+
+            </div>
+
+            <button type="submit" class="contact-submit-btn">
+                Submit Feedback
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- Navigation section to ContactUs -->
+<section class="page-navigation">
+    <div class="navigation-card">
+
+        <h3>
+            Need to contact the BlogHub team?
+        </h3>
+
+        <p>
+            Send us a question, issue or suggestion.
+        </p>
+
+        <a href="{% url 'contact' %}" class="navigation-btn">
+            Contact Us
+        </a>
+
+    </div>
+</section>
+
+<script src="{% static 'js/contact.js' %}"></script>
+
+{% endblock %}

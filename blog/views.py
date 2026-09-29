@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm, BlogPostForm, EditProfileForm
+from .forms import RegisterForm, BlogPostForm, EditProfileForm, ContactForm, FeedbackForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import BlogPost, Category
+from .models import BlogPost, Category, Contact, Feedback
 from django.core.paginator import Paginator
 from django.db.models import Count
 
@@ -29,8 +29,8 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def contact(request):
-    return render(request, 'contact.html')
+# def contact(request):
+#     return render(request, 'contact.html')
 
 def register_view(request):
     if request.user.is_authenticated:
@@ -280,29 +280,6 @@ def delete_blog(request, pk):
         blog_id=blog.id
     )
 
-def category_blogs(request, category_id):
-
-    category = get_object_or_404(
-        Category,
-        id=category_id
-    )
-
-    blogs = BlogPost.objects.filter(
-        category=category
-    ).order_by('-created_at')
-
-    context = {
-        'category': category,
-        'blogs': blogs
-    }
-
-    return render(
-        request,
-        'blog/category_blogs.html',
-        context
-    )
-
-
 @login_required
 def profile(request):
 
@@ -359,5 +336,84 @@ def edit_profile(request):
     return render(
         request,
         'user/edit_profile.html',
+        context
+    )
+
+def contact(request):
+
+    if request.method == 'POST':
+        form = ContactForm(
+            request.POST
+        )
+
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                'Message sent successfully.'
+            )
+
+            return redirect(
+                'contact'
+            )
+
+    else:
+        # form = ContactForm()
+        if request.user.is_authenticated:
+            form = ContactForm(
+                initial={
+                    'name': request.user.username,
+                    'email': request.user.email
+                }
+            )
+
+        else:
+            form = ContactForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(
+        request,
+        'user/contact.html',
+        context
+    )
+
+@login_required
+def feedback(request):
+
+    if request.method == 'POST':
+        form = FeedbackForm(
+            request.POST
+        )
+
+        if form.is_valid():
+            feedback = form.save(
+                commit=False
+            )
+
+            feedback.user = request.user
+
+            feedback.save()
+            messages.success(
+                request,
+                'Feedback submitted successfully.'
+            )
+
+            return redirect(
+                'feedback'
+            )
+
+    else:
+        form = FeedbackForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(
+        request,
+        'user/feedback.html',
         context
     )

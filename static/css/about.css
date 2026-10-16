@@ -106,6 +106,25 @@
     color: #6b6478;
 }
 
+/* Clickable Feature Icons */
+.feature-icon-link {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+.feature-icon-link:hover {
+    transform: translateY(-4px);
+}
+.feature-icon-link:focus-visible {
+    outline: 2px solid #7b2ff7;
+    outline-offset: 4px;
+}
+.feature-icon-link .feature-icon {  /* Keep the icon styling unchanged */
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
 /* ===========RESPONSIVE (Tablet, Mobile, Small Mobile)================ */
 @media (max-width: 1024px){
     .about-hero{

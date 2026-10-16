@@ -23,9 +23,7 @@ class BlogPost(models.Model):
     content = models.TextField()
 
     image = models.ImageField(
-        upload_to='blog_images/',
-        blank=True,
-        null=True
+        upload_to='blog_images/'
     )
 
     author = models.ForeignKey(

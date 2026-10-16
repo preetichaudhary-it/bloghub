@@ -79,6 +79,12 @@ class BlogPostForm(forms.ModelForm):
             })
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.instance and self.instance.pk and self.instance.image:
+            self.fields['image'].required = False
+
     def clean_content(self):
 
         content = self.cleaned_data.get('content')

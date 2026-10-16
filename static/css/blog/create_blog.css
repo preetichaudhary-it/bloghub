@@ -37,7 +37,8 @@
     color: #676383;
     font-size: 14px;
 }
-/* form card*/
+
+/* ----------- form card --------------*/
 .create-blog-card{
     width: 100%;
     max-width: 800px;
@@ -126,7 +127,9 @@ input[type="checkbox"][name$="-clear"],
 input[type="checkbox"][name$="-clear"] + label {
     display: none;
 }
-.form-actions{  /* =====BUTTON=============== */
+
+/* =====BUTTON=============== */
+.form-actions{  
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
@@ -170,6 +173,18 @@ input[type="checkbox"][name$="-clear"] + label {
     overflow-y: auto;
 }
 
+/* required asterisk beside labels*/
+.required{  
+    color: #e53935;
+    font-weight: 700;
+}
+.field-error{
+    color: #e53935;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
 /* ==============RESPONSIVE ===================*/
 @media (max-width: 1024px){
     .create-blog-container{ padding: 25px 15px; }
@@ -186,5 +201,37 @@ input[type="checkbox"][name$="-clear"] + label {
     .form-group select{ 
         font-size: 14px; }
     .btn-submit, 
-    .btn-cancel{ font-size: 14px; padding: 10px; }
+    .btn-cancel{ 
+        font-size: 14px; 
+        padding: 10px; }
+}
+@media (max-width: 480px){
+    .create-blog-page{
+        width: 95%;
+        margin: 10px auto 40px;}
+    .create-blog-container{
+        padding: 20px 10px; }
+    .create-blog-header{
+        padding: 20px 16px; }
+    .create-blog-header h1{
+        font-size: 20px; }
+    .create-blog-header p{
+        font-size: 13px; }
+    .create-blog-card{
+        padding: 16px; }
+    .create-blog-card h2{
+        font-size: 22px; 
+    }
+    .current-image-box img{
+        width: 140px;
+        height: 95px;
+    }
+    .btn-submit,
+    .btn-cancel{
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    #editor{ min-height: 300px; }
+    .ql-container.ql-snow{ height: 320px; }
 }

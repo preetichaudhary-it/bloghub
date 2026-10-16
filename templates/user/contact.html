@@ -7,49 +7,115 @@
 
 {% block content %}
 
-<!-- Contact Page -->
+<!-- Contact Hero -->
 <section class="contact-hero">
+
     <h1>Contact Us</h1>
     <p class="contact-sub">
         Reach out to the BlogHub team. We are always happy to assist you.
     </p>
+
+</section>
+
+<!-- Contact Information -->
+<section class="contact-info-section">
+
+    <div class="contact-info-card">
+
+        <h2>Get in Touch</h2>
+
+        <p class="contact-info-desc">
+            Have questions about BlogHub? We're here to help.
+            Feel free to reach out to us using the contact details below.
+        </p>
+
+        <div class="contact-info-list">
+
+            <!-- Email Information -->
+            <div class="contact-info-item">
+                <div class="contact-info-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <div class="contact-info-text">
+                    <h3>Email Address</h3>
+                    <a href="mailto:bloghub2026@gmail.com">
+                        bloghub2026@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Phone Information -->
+            <div class="contact-info-item">
+                <div class="contact-info-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+
+                <div class="contact-info-text">
+                    <h3>Phone Number</h3>
+                    <a href="tel:6351864144">
+                        6351864144
+                    </a>
+                </div>
+            </div>
+
+            <!-- Address Information -->
+            <div class="contact-info-item">
+                <div class="contact-info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+
+                <div class="contact-info-text">
+                    <h3>Address</h3>
+                    <p>AMPICS, Ganpat University</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 <!-- Contact Form -->
 <section class="contact-form-wrapper">
 
     <div class="contact-form-card">
+
+        <!-- Contact Form Heading -->
         <h2>Need Help ?</h2>
         <p class="contact-form-desc">
             Have a question or issue? Send us a message and we'll get back to you.
         </p>
 
+        <!-- Form -->
         <form method="POST" action="" class="contact-form" id="contactForm">
+
             {% csrf_token %}
 
             <div class="form-row">
 
-                <!-- Row 1: Left Column -->
+                <!-- Row 1: Left Column (Name)-->
                 <div class="form-group">
-                    <label>Name</label>
+                    <label>Name  <span class="required">*</span></label>
 
                     <div class="input-wrap">
                         {{ form.name }}
                     </div>
                 </div>
 
-                <!-- Row 1: Right Column -->
+                <!-- Row 1: Right Column (Email)-->
                 <div class="form-group">
-                    <label>Email</label>
+                    <label>Email  <span class="required">*</span></label>
 
                     <div class="input-wrap">
                         {{ form.email }}
                     </div>
                 </div>
             
-                <!-- Row 2: Full width span -->
+                <!-- Row 2: Full width span (Subject) -->
                 <div class="form-group full">
-                    <label>Subject</label>
+                    <label>Subject  <span class="required">*</span></label>
 
                     <div class="input-wrap">
                         {{ form.subject }}
@@ -57,10 +123,11 @@
 
                 </div>
                 
-                <!-- Row 3: Full width span -->
+                <!-- Row 3: Full width span (Message)-->
                 <div class="form-group full">
                     <label>
-                        Message
+                        Message  
+                        <span class="required">*</span>
                         <span class="limit-label">
                             (Limit 200 words)
                         </span>
@@ -71,17 +138,24 @@
                     <p class="word-count">
                         <span id="wordCount">0</span> / 200 words
                     </p>
+
+                    <p id="messageError" class="message-error" role="alert" aria-live="polite"></p>
+
                 </div>
 
             </div>
 
+            <!-- Submit Button -->
             <button type="submit" class="contact-submit-btn">Send Message</button>
         </form>
+
     </div>
+
 </section>
 
 <!-- Navigation section to Feedback -->
 <section class="page-navigation">
+    
     <div class="navigation-card">
 
         <h3>
@@ -107,7 +181,9 @@
         {% endif %}
 
     </div>
+
 </section>
 
 <script src="{% static 'js/contact.js' %}"></script>
+
 {% endblock %}

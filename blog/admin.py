@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import BlogUser, Category, BlogPost, Contact, Feedback
 
-
 # Registering models here.
 @admin.register(BlogUser)
 class BlogUserAdmin(UserAdmin):
@@ -24,6 +23,7 @@ class BlogPostAdmin(admin.ModelAdmin):
         'created_at'
     ]
 
+
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
     list_display = (
@@ -42,6 +42,7 @@ class ContactAdmin(admin.ModelAdmin):
     ordering = (
         '-created_at',
     )
+
 
 @admin.register(Feedback)
 class FeedbackAdmin(admin.ModelAdmin):

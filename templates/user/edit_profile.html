@@ -1,45 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
-
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/user/profile.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
+{% block content %}
+
 <section class="dashboard-page">
 
     <div class="dashboard-container">
 
+        <!-- Left Side Bar -->
         <aside class="dashboard-sidebar">
 
+            <!-- Dashboard -->
             <a href="{% url 'profile' %}"
             class="sidebar-link {% if active_page == 'dashboard' %}active{% endif %}">
                 <i class="fa-solid fa-table-columns"></i>
                 Dashboard
             </a>
 
+            <!-- Create Blog -->
             <a href="{% url 'create-blog' %}"
             class="sidebar-link">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Create Blog
             </a>
 
+            <!-- Edit Profile -->
             <a href="{% url 'edit-profile' %}"
             class="sidebar-link {% if active_page == 'edit_profile' %}active{% endif %}">
                 <i class="fa-solid fa-user"></i>
                 Edit Profile
             </a>
 
-            <a href="{% url 'logout' %}"
-            class="sidebar-link">
+            <!-- Feedback -->
+            <a href="{% url 'feedback' %}" class="sidebar-link">
+                <i class="fa-solid fa-comment-dots"></i>
+                Share Feedback
+            </a>
+
+            <!-- Logout -->
+            <a href="{% url 'logout' %}" class="sidebar-link">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Logout
             </a>
 
         </aside>
 
+        <!-- Edit Profile Form (Right side) -->
         <div class="dashboard-content-edit-profile">
 
             <h1>Edit Profile</h1>
@@ -47,6 +58,8 @@
             <form method="POST" class="profile-form">
 
                 {% csrf_token %}
+
+                <!-- Username -->
                 <div class="form-group">
                     <label>Username</label>
                     <input type="text"
@@ -55,21 +68,25 @@
                     <small class="field-note">Username cannot be changed.</small>
                 </div>
 
+                <!-- Email -->
                 <div class="form-group">
                     <label>Email</label>
                     {{ form.email }}
                 </div>
 
+                <!-- First Name -->
                 <div class="form-group">
                     <label>First Name</label>
                     {{ form.first_name }}
                 </div>
 
+                <!-- Last Name -->
                 <div class="form-group">
                     <label>Last Name</label>
                     {{ form.last_name }}
                 </div>
 
+                <!-- Save Button -->
                 <button type="submit"
                         class="save-btn">
                     Save Changes

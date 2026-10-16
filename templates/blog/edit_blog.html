@@ -7,9 +7,10 @@
 {% endblock %}
 
 {% block content %}
+
 <section class="create-blog-page">
 
-    <!-- Header -->
+    <!-- Edit Blog Header -->
     <div class="create-blog-header">
 
         <div>
@@ -26,20 +27,24 @@
 
         <h2>Edit Blog</h2>
 
+        <!-- Edit Blog Form -->
         <form method="POST" enctype="multipart/form-data">
 
             {% csrf_token %}
 
+            <!-- Title -->
             <div class="form-group">
-                <label>Title</label>
+                <label>Title  <span class="required">*</span></label>
                 {{ form.title }}
             </div>
 
+            <!-- Category -->
             <div class="form-group">
-                <label>Category</label>
+                <label>Category  <span class="required">*</span></label>
                 {{ form.category }}
             </div>
 
+            <!-- Cover Image -->
             <div class="form-group">
                 <label>Cover Image</label>
 
@@ -55,11 +60,17 @@
 
                 <label>Change Cover Image</label>
                 {{ form.image }}
-
             </div>
 
+            <!-- Content -->
             <div class="form-group">
-                <label>Content</label>
+                <label>Content  <span class="required">*</span></label>
+
+                {% if form.content.errors %}
+                    <div class="field-error">
+                        {{ form.content.errors.0 }}
+                    </div>
+                {% endif %}
 
                 <div id="editor">
                     {{ form.content.value|safe }}
@@ -68,6 +79,7 @@
                 {{ form.content }}
             </div>
 
+            <!-- Create Blog Actions Update\Cancel Buttons -->
             <div class="form-actions">
 
                 <button type="submit" class="btn-submit">
@@ -127,8 +139,10 @@
     const form = document.querySelector('form');
 
     form.addEventListener('submit', function () {
+
         const content = quill.root.innerHTML;
         document.querySelector('#id_content').value = content;
+        
     });
 
 </script>

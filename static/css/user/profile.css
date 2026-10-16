@@ -9,7 +9,8 @@
     grid-template-columns: 240px 1fr;
     gap: 25px;
 }
-.dashboard-sidebar{ /* ===== SIDEBAR ===== */
+/* ===== SIDEBAR ===== */
+.dashboard-sidebar{ 
     background: #ffffff;
     padding: 20px;
     border-radius: 15px;
@@ -35,7 +36,9 @@
 .sidebar-link.active{
     background: #7b2ff7;
     color: white; }
-.dashboard-header{      /* ===== CONTENT ===== */
+
+ /* ===== CONTENT ===== */
+.dashboard-header{     
     margin-bottom: 20px; }
 .dashboard-header h1{
     color: #1c1030;
@@ -75,15 +78,12 @@
     font-size: 20px;
     font-weight: 700;
 }
-.my-blogs-section h2{   /* ===== BLOGS ===== */
-    margin-bottom: 20px;
-    color: #1c1030;
-}
 .my-blogs-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
+/* --------------- Blog Card --------- */
 .my-blog-card{
     background: white;
     padding: 20px;
@@ -159,8 +159,8 @@
     font-size: 16px;
 }
 .delete-blog-btn:hover{ text-decoration: underline; }
-
-.empty-dashboard{   /* ===== EMPTY ===== */
+ /* ===== EMPTY ===== */
+.empty-dashboard{  
     grid-column: 1 / -1;
     text-align: center;
     padding: 50px 20px;
@@ -209,17 +209,69 @@
     cursor:pointer;
     font-weight:600;
 }
-.save-btn:hover{
-    background:#592cb4;
-}
+.save-btn:hover{ background:#592cb4; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px){
-    .dashboard-container{ grid-template-columns: 1fr; }
-    .my-blogs-grid{ grid-template-columns: repeat(2,1fr); }
+@media (max-width: 1024px) {
+    .dashboard-container { grid-template-columns: 1fr; gap: 20px; }
+    .dashboard-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px;
+    }
+    .sidebar-link {
+        flex: 1 1 auto;
+        justify-content: center;
+        padding: 12px 14px;
+        white-space: nowrap;
+    }
+    .my-blogs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 600px){
-    .my-blogs-grid{ grid-template-columns: 1fr; }
-    .stats-card{ width: 100%; }
-    .dashboard-sidebar{ padding: 15px; }
+@media (max-width: 768px) {
+    .dashboard-page {
+        width: 94%;
+        margin-top: 20px;
+    }
+    .dashboard-container { gap: 22px; } 
+    .dashboard-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+    .sidebar-link {
+        justify-content: flex-start;
+        min-width: 0;
+        white-space: normal;
+        padding: 12px;
+        font-size: 14px;
+    }
+    .my-blogs-grid { grid-template-columns: 1fr; }
+    .stats-card { width: 100%; }
+}
+@media (max-width: 480px) {
+    .dashboard-page {
+        width: 92%;
+        margin: 15px auto 30px;
+    }
+    .dashboard-sidebar {
+        padding: 10px;
+        gap: 6px;
+    }
+    .sidebar-link {
+        gap: 8px;
+        padding: 11px 8px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+    .sidebar-link i { font-size: 14px; }
+    .dashboard-header h1 {
+        font-size: 25px;
+        overflow-wrap: anywhere;
+    }
+    .dashboard-header p { font-size: 14px; line-height: 1.5; }
+    .stats-card { padding: 15px; gap: 10px; }
+    .stats-card h3 { font-size: 17px; }
+    .stats-card span { font-size: 24px; }
+    .my-blog-card { padding: 15px; min-width: 0; }
 }

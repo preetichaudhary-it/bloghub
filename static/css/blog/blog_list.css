@@ -4,7 +4,8 @@
     max-width: 1200px;
     margin: 15px auto 60px;
 }
-.blogs-hero-container { /* =======HERO SECTION ==========*/
+/* =======HERO SECTION ==========*/
+.blogs-hero-container { 
     width: 100%;
     max-width: 850px;
     margin: 0 auto;
@@ -76,7 +77,7 @@
     color: #676383;
     font-size: 15px;
 }
-.create-blog-btn {  /* ========CREATE BLOG BUTTON========== */
+.create-blog-btn {  /*CREATE BLOG BUTTON  */
     display: inline-block;
     text-decoration: none;
     background: #7b2ff7;
@@ -95,7 +96,8 @@
 .create-blog-btn i {
     margin-left: 6px;
 }
-.blogs-container {      /* ============BLOG GRID==================== */
+/* ============BLOG GRID==================== */
+.blogs-container {      
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -111,18 +113,17 @@
     display: flex;
     flex-direction: column;
 }
-
 .blog-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
 }
-.blog-image {       /* ====BLOG IMAGE================= */
+.blog-image {       /* BLOG IMAGE  */
     width: 100%;
     height: 220px;
     object-fit: cover;
     display: block;
 }
-.blog-content {  /* ===============BLOG CONTENT================= */
+.blog-content {  /* BLOG CONTENT  */
     padding: 24px; 
     display: flex;
     flex-direction: column;
@@ -152,7 +153,7 @@
 .blog-title-link:hover{
     color: #592cb4;
 }
-.blog-meta {    /* =============BLOG META=============== */
+.blog-meta {    /* BLOG META*/
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -161,13 +162,13 @@
     color: #777;
     margin-bottom: 16px;
 }
-.blog-excerpt {     /* ===========BLOG EXCERPT=========== */
+.blog-excerpt {     /* BLOG EXCERPT */
     color: #555;
     font-size: 15px;
     line-height: 1.5;
     margin-bottom: 20px;
 }
-.blog-actions { /* =========BLOG ACTIONS==================== */
+.blog-actions { /* BLOG ACTIONS*/
     display: flex;
     align-items: center;
     gap: 10px;
@@ -224,7 +225,8 @@
     background: #7b2ff7;
     color: white;
     border-color: #7b2ff7; }
-/* =======  RESPONSIVE TABLET================= */
+
+/* =======  RESPONSIVE ================= */
 @media (max-width: 1024px) {
     .blog-list-page { width: 94%; }
     .blogs-hero-container { padding: 30px 20px; }
@@ -236,9 +238,12 @@
     .blog-content { padding: 20px; }
     .blog-content h2 { font-size: 21px; }
 }
-@media (max-width: 600px) { /* ==============MOBILE================ */
+@media (max-width: 768px) { 
     .blog-list-page { width: 94%; margin-top: 20px; }
-    .blogs-hero-container { padding: 25px 10px; margin-bottom: 25px; }
+    .blogs-hero-container { 
+        padding: 25px 10px; 
+        margin-bottom: 25px; 
+    }
     .blogs-hero-container h1 { font-size: 28px; } 
     .blogs-hero-container p { font-size: 14px; }
     .category-filter{
@@ -253,12 +258,20 @@
         margin-bottom: 25px; }
     .blog-list-header h1 { font-size: 24px; }
     .blog-list-header p { font-size: 14px; }
-    .create-blog-btn { width: 100%; text-align: center; }
-    .blogs-container { grid-template-columns: 1fr; gap: 22px; } /* on card per row*/
+    .create-blog-btn { 
+        width: 100%; 
+        text-align: center; }
+    .blogs-container { 
+        grid-template-columns: 1fr; 
+        gap: 22px; } /* on card per row*/
     .blog-image { height: 190px; }
-    .blog-meta { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .blog-meta { 
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 5px; 
+    }
 }
-@media (max-width: 480px) { /* ===========SMALL MOBILE=============== */
+@media (max-width: 480px) { 
     .blog-list-page { width: 92%; }
     .blogs-hero-container { padding: 20px 5px; }
     .blogs-hero-container h1 { font-size: 24px; }
@@ -269,5 +282,7 @@
     .blog-content { padding: 18px; }
     .blog-content h2 { font-size: 19px; }
     .blog-excerpt { font-size: 14px; }
-    .read-btn { width: 100%; text-align: center; }
+    .read-btn { 
+        width: 100%; 
+        text-align: center; }
 }

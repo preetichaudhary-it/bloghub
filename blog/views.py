@@ -7,11 +7,9 @@ from .models import BlogPost, Category, Contact, Feedback
 from django.core.paginator import Paginator
 from django.db.models import Count
 
-# Create your views here.
+# =================== Home View ========================
 def home(request):
-    latest_blogs = BlogPost.objects.order_by(
-        '-created_at'
-    )[:4]
+    latest_blogs = BlogPost.objects.order_by('-created_at')[:4]
 
     categories = Category.objects.all()
 
@@ -26,15 +24,18 @@ def home(request):
         context
     )
 
+
+# =================== About View ========================
 def about(request):
     return render(request, 'about.html')
 
-# def contact(request):
-#     return render(request, 'contact.html')
 
+# =================== Register View ========================
 def register_view(request):
+
     if request.user.is_authenticated:
         return redirect('home')
+    
     if request.method == 'POST':
         print("Register form submitted")
         form = RegisterForm(request.POST)
@@ -53,7 +54,10 @@ def register_view(request):
 
     return render(request, 'register.html',{'form':form})
 
+
+# =================== Login View ========================
 def login_view(request):
+
     if request.user.is_authenticated:
             return redirect('home')
 
@@ -66,7 +70,8 @@ def login_view(request):
     username = ''
 
     if request.method == 'POST':
-        username = request.POST.get('username', '').strip() # get values from html
+
+        username = request.POST.get('username', '').strip() 
         password = request.POST.get('password', '')
 
         # Username validation
@@ -88,6 +93,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"Welcome, {user.username} !")
+
                 return redirect('home')
 
             else:
@@ -104,12 +110,16 @@ def login_view(request):
         }
     )
 
+
+# =================== Logout View ========================
 def logout_view(request):
     logout(request)
 
     messages.success(request, "You have been logged out successfully.")
     return redirect('home')
 
+
+# =================== Create Blog View ========================
 @login_required
 def create_blog(request):
 
@@ -136,7 +146,6 @@ def create_blog(request):
             return redirect('blog-list')
 
     else:
-
         form = BlogPostForm()
 
     return render(
@@ -147,15 +156,15 @@ def create_blog(request):
         }
     )
 
+
+# =================== Blog List View ========================
 def blog_list(request):
 
     categories = Category.objects.all()
 
     category_id = request.GET.get('category')
 
-    blog_posts = BlogPost.objects.all().order_by(
-        '-created_at'
-    )
+    blog_posts = BlogPost.objects.all().order_by('-created_at')
 
     current_category = None
 
@@ -194,6 +203,8 @@ def blog_list(request):
         context
     )
 
+
+# =================== Blog Detail View ========================
 def blog_detail(request, blog_id):
 
     blog = get_object_or_404(
@@ -209,6 +220,8 @@ def blog_detail(request, blog_id):
         }
     )
 
+
+# =================== Edit Blog View ========================
 @login_required
 def edit_blog(request, pk):
 
@@ -253,6 +266,8 @@ def edit_blog(request, pk):
         context
     )
 
+
+# =================== Delete Blog View ========================
 @login_required
 def delete_blog(request, pk):
 
@@ -280,6 +295,8 @@ def delete_blog(request, pk):
         blog_id=blog.id
     )
 
+
+# =================== Profile View ========================
 @login_required
 def profile(request):
 
@@ -299,6 +316,8 @@ def profile(request):
         context
     )
 
+
+# =================== Edit Profile View ========================
 @login_required
 def edit_profile(request):
 
@@ -339,6 +358,8 @@ def edit_profile(request):
         context
     )
 
+
+# =================== Contact View ========================
 def contact(request):
 
     if request.method == 'POST':
@@ -358,7 +379,7 @@ def contact(request):
             )
 
     else:
-        # form = ContactForm()
+
         if request.user.is_authenticated:
             form = ContactForm(
                 initial={
@@ -380,6 +401,8 @@ def contact(request):
         context
     )
 
+
+# =================== Feedback View ========================
 @login_required
 def feedback(request):
 
@@ -406,6 +429,7 @@ def feedback(request):
             )
 
     else:
+        
         form = FeedbackForm()
 
     context = {

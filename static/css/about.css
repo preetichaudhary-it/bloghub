@@ -1,4 +1,4 @@
-/* About Page */
+/*--------- About Page------------- */
 /* Hero Section */
 .about-hero{
     display: flex;
@@ -106,35 +106,29 @@
     color: #6b6478;
 }
 
-/* ========================================
-   =============RESPONSIVE ================ */
+/* ===========RESPONSIVE (Tablet, Mobile, Small Mobile)================ */
 @media (max-width: 1024px){
     .about-hero{
         flex-direction: column;
         padding: 50px 25px;
         text-align: center;
     }
-    .about-underline{
-        margin:0 auto 20px;
-    }
+    .about-underline{ margin:0 auto 20px; }
     .about-features{
         grid-template-columns:repeat(2,1fr);
         padding:50px 25px;
     }
     .about-hero-image{
-        /* display: none; */
         transform: none;
-        max-width: 650px;
-    }
+        max-width: 650px; }
 }
-@media(max-width:600px){
-    .about-features{
-        grid-template-columns:1fr;
-    }
-    .about-hero-text h1{
-        font-size:32px;
-    }
-    .about-hero-image{
-        display: none;
-    }
+@media(max-width: 768px){
+    .about-features{ grid-template-columns:1fr; }
+    .about-hero-text h1{ font-size:32px; }
+    .about-hero-image{ display: none; }
+}
+@media(max-width:480px){
+    .about-hero{ padding:40px 20px; }
+    .about-hero-text h1{ font-size:28px; }
+    .about-banner p{ font-size:18px; }
 }

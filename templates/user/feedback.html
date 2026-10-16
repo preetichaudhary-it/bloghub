@@ -7,35 +7,39 @@
 
 {% block content %}
 
+<!-- Feedback Hero -->
 <section class="contact-hero">
 
     <h1>Share Your Feedback</h1>
-
     <p class="contact-sub">
         Tell us what you like, dislike, or what you would like to see improved in BlogHub.
     </p>
 
 </section>
 
+<!-- Feedback Form Section -->
 <section class="contact-form-wrapper">
 
     <div class="contact-form-card">
 
+        <!-- Feedback Form Heading -->
         <h2>Send Feedback</h2>
-
         <p class="contact-form-desc">
             Your suggestions help us improve BlogHub.
         </p>
 
+        <!-- Feedback form -->
         <form method="POST" class="contact-form">
 
             {% csrf_token %}
 
             <div class="form-row">
 
+                <!-- Feedback -->
                 <div class="form-group full">
                     <label>
                         Feedback
+                        <span class="required">*</span>
                         <span class="limit-label">
                             (Limit 200 words)
                         </span>
@@ -46,10 +50,15 @@
                     <p class="word-count">
                         <span id="wordCount">0</span> / 200 words
                     </p>
+
+                    <p id="messageError" class="message-error" role="alert" aria-live="polite"></p>
+
+
                 </div>
 
             </div>
 
+            <!-- Submit Button -->
             <button type="submit" class="contact-submit-btn">
                 Submit Feedback
             </button>
@@ -62,6 +71,7 @@
 
 <!-- Navigation section to ContactUs -->
 <section class="page-navigation">
+    
     <div class="navigation-card">
 
         <h3>
@@ -77,6 +87,7 @@
         </a>
 
     </div>
+
 </section>
 
 <script src="{% static 'js/contact.js' %}"></script>

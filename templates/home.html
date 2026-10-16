@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
 
 {% block styles %} 
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
+
+{% block content %}
 
 <!-- Hero Section-->
 <section class="hero" id="home">
@@ -13,14 +14,17 @@
 
         <!-- Hero Text -->
         <div class="hero-content">
+
             <span class="hero-badge">Welcome to BlogHub</span>
             <h1>Discover Amazing Stories, Ideas & Knowledge<span>Every Day</span></h1>
+
             <p class="hero-description">
                 Explore technology, travel, lifestyle, business, education, health, AI, and much more from talented writers around the world.
             </p>
 
             <!-- Hero Buttons -->
             <div class="hero-buttons">
+
                 <a href="{% url 'blog-list' %}" class="hero-btn hero-btn-primary">
                     Explore Blogs
                     <i class="fa-solid fa-arrow-right"></i>
@@ -41,7 +45,9 @@
                     </a>
 
                 {% endif %}
+
             </div>
+
         </div>
 
         <!-- Hero Image -->
@@ -62,12 +68,9 @@
         <div class="latest-articles-header">
 
             <h2>Latest Articles</h2>
-
             <a href="{% url 'blog-list' %}" class="view-all-blogs">
-
                 View All Blogs
                 <i class="fa-solid fa-arrow-right"></i>
-
             </a>
 
         </div>
@@ -76,6 +79,7 @@
 
             {% for blog in latest_blogs %}
 
+            <!-- Latest Blog Cards -->
             <div class="latest-blog-card">
 
                 {% if blog.image %}
@@ -86,16 +90,19 @@
 
                 <div class="latest-blog-content">
 
+                    <!-- Category -->
                     <span class="latest-blog-category">
                         {{ blog.category }}
                     </span>
-
+                    
+                    <!-- Title -->
                     <h2>
                         <a href="{% url 'blog-detail' blog.id %}" class="blog-title-link">
                             {{ blog.title|truncatechars:40 }}
                         </a>
                     </h2>
 
+                    <!-- Meta info -->
                     <div class="blog-meta">
                         <span>By {{ blog.author }}</span>
                         <span>
@@ -103,21 +110,22 @@
                         </span>
                     </div>
 
+                    <!-- Content -->
                     <p>
-                            {{ blog.content|striptags|safe|truncatewords:12 }}
+                        {{ blog.content|striptags|safe|truncatewords:12 }}
                     </p>
 
+                    <!-- Read More link -->
                     <a href="{% url 'blog-detail' blog.id %}" class="latest-read-more">
-
                         Read More
                         <i class="fa-solid fa-arrow-right"></i>
-
                     </a>
 
                 </div>
 
             </div>
 
+            <!-- For empty state -->
             {% empty %}
 
             <p>No blogs available.</p>
@@ -132,7 +140,6 @@
 
 <!-- CATEGORIES SECTION -->
 <section class="categories-section" id="categories">
-
     <div class="categories-container">
 
         <div class="categories-heading">
@@ -144,9 +151,7 @@
             {% for category in categories %}
 
             <a href="{% url 'blog-list' %}?category={{ category.id }}" class="category-card">
-
                 <span>{{ category.name }}</span>
-
             </a>
 
             {% endfor %}
@@ -154,12 +159,12 @@
         </div>
 
     </div>
-
 </section>
 
 <!-- Connect Section -->
 <section class="connect-section">
     <div class="connect-container">
+
         <div class="connect-text">
             <h2>Stay Connected with BlogHub</h2>
             <p>Discover fresh stories, ideas, and knowledge from our community of writers.</p>
@@ -169,6 +174,8 @@
             <a href="{% url 'about' %}" class="connect-btn outline-btn">About Us</a>
             <a href="{% url 'contact' %}" class="connect-btn">Contact Us</a>
         </div>
+
     </div>
 </section>
+
 {% endblock %} 

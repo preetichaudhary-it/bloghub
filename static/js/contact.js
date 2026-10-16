@@ -1,27 +1,94 @@
+// document.addEventListener('DOMContentLoaded', function () {
+//     const messageBox = document.getElementById('id_message');
+//     const wordCount = document.getElementById('wordCount');
+//     const messageError = document.getElementById('messageError');
+//     const contactForm = document.getElementById('contactForm');
+
+//     if (!messageBox || !wordCount) {
+//         return;
+//     }
+
+//     function updateWordCount() {
+//         const text = messageBox.value.trim();
+//         const words = text ? text.split(/\s+/).filter(Boolean) : [];
+//         const count = words.length;
+
+//         wordCount.textContent = count;
+//         wordCount.style.color = count > 200 ? '#e53935' : '';
+
+//         if (messageError) {
+//             messageError.textContent = count > 200
+//                 ? 'Maximum 200 words allowed.'
+//                 : '';
+//         }
+//     }
+
+//     messageBox.addEventListener('input', updateWordCount);
+
+//     updateWordCount();
+
+//     if (contactForm) {
+//         contactForm.addEventListener('submit', function (event) {
+//             const text = messageBox.value.trim();
+//             const count = text ? text.split(/\s+/).filter(Boolean).length : 0;
+
+//             if (count > 200) {
+//                 event.preventDefault();
+
+//                 if (messageError) {
+//                     messageError.textContent = 'Maximum 200 words allowed.';
+//                 }
+
+//                 messageBox.focus();
+//             }
+//         });
+//     }
+// });
+
 document.addEventListener('DOMContentLoaded', function () {
-    const messageBox = document.getElementById('message');
+    const messageBox = document.getElementById('id_message') ||
+                      document.getElementById('id_feedback');
     const wordCount = document.getElementById('wordCount');
+    const messageError = document.getElementById('messageError');
+    const contactForm = document.getElementById('contactForm') ||
+                        messageBox?.closest('form');
 
-    if (messageBox) {
-        messageBox.addEventListener('input', function (e) {
-            // RegEx splits by spaces, tabs, and newlines while filtering out empty strings
-            let words = this.value.trim().split(/\s+/).filter(Boolean);
+    if (!messageBox || !wordCount) {
+        return;
+    }
 
-            if (words.length > 200) {
-                // Save the current cursor selection position
-                const selectionStart = this.selectionStart;
-                const selectionEnd = this.selectionEnd;
+    function updateWordCount() {
+        const text = messageBox.value.trim();
+        const words = text ? text.split(/\s+/).filter(Boolean) : [];
+        const count = words.length;
 
-                // Trim the word list strictly to 200
-                words = words.slice(0, 200);
-                this.value = words.join(' ');
+        wordCount.textContent = count;
+        wordCount.style.color = count > 200 ? '#e53935' : '';
 
-                // Restore the cursor position so it doesn't snap to the end
-                this.setSelectionRange(selectionStart, selectionEnd);
+        if (messageError) {
+            messageError.textContent = count > 200
+                ? 'Maximum 200 words allowed.'
+                : '';
+        }
+    }
+
+    messageBox.addEventListener('input', updateWordCount);
+    updateWordCount();
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (event) {
+            const text = messageBox.value.trim();
+            const count = text ? text.split(/\s+/).filter(Boolean).length : 0;
+
+            if (count > 200) {
+                event.preventDefault();
+
+                if (messageError) {
+                    messageError.textContent = 'Maximum 200 words allowed.';
+                }
+
+                messageBox.focus();
             }
-
-            // Update the live counter number
-            wordCount.textContent = words.length;
         });
     }
-}); 
+});

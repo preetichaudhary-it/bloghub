@@ -30,7 +30,6 @@
     color:#666;
     margin-bottom:35px;
 }
-
 .input-group{
     margin-bottom:20px;
 }
@@ -65,7 +64,6 @@
     margin-top:10px;
     transition:.3s;
 }
-
 .form-login-btn:hover{
     transform:translateY(-2px);
 } 
@@ -116,23 +114,17 @@
     line-height: 1.4;
 }
 
-/* Responsive */
+/*----------- Responsive (Tablet, Mobile, Small Mobile)---------- */
 @media(max-width: 1024px){
     .login-container{
         flex-direction:column;
         max-width: 600px;
     }
-    .login-image-section{ /* hide image on smaller screens*/
-        display:none;
-    }
-    .login-form-section{
-        padding:35px;
-    }
-    .login-form-section h1{
-        font-size:32px;
-    }
+    .login-image-section{ display:none; }
+    .login-form-section{ padding:35px; }
+    .login-form-section h1{ font-size:32px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .auth-page {
         min-height: calc(100vh - 70px);
         padding: 25px 15px;
@@ -157,9 +149,7 @@
         line-height: 1.5;
         margin-bottom: 25px;
     }
-    .input-group {
-        margin-bottom: 17px;
-    }
+    .input-group { margin-bottom: 17px; }
     .input-group label {
         font-size: 15px;
         margin-bottom: 7px;
@@ -180,13 +170,16 @@
         width: 100%;
         padding: 13px;
         font-size: 15px;
-        margin-top: 5px;
-    }
+        margin-top: 5px; }
     .register-link {
         font-size: 14px;
-        margin-top: 20px;
-    }
-    .register-link a {
-        font-size: 14px;
-    }
+        margin-top: 20px; }
+    .register-link a { font-size: 14px; }
+}
+@media (max-width:480px){
+    .login-form-section{ padding:25px 18px; }
+    .login-form-section h1{ font-size:24px; }
+    .subtitle{ font-size:13px; }
+    .input-group input{ padding:12px; }
+    .form-login-btn{ font-size:14px; }
 }

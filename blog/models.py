@@ -10,7 +10,7 @@ class BlogUser(AbstractUser):
         return self.username
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=30, unique=True)
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -57,7 +57,7 @@ class Contact(models.Model):
     email = models.EmailField()
 
     subject = models.CharField(
-        max_length=200
+        max_length=150
     )
 
     message = models.TextField()

@@ -8,15 +8,19 @@
 {% endblock %}
 
 {% block content %}
+
 <section class="create-blog-page">
+
     <div class="create-blog-container">
 
         <!-- Create Blog page header -->
         <div class="create-blog-header">
+
             <div>
                 <h1><span>Create</span> a New Blog</h1>
                 <p>Share your thoughts, ideas and knowledge with the world.</p>
             </div>
+
         </div>
 
         <!-- Create Blog Card -->
@@ -28,23 +32,33 @@
 
                 {% csrf_token %}
 
+                <!-- Title -->
                 <div class="form-group">
-                    <label for="{{ form.title.id_for_label }}">Title</label>
+                    <label for="{{ form.title.id_for_label }}">Title  <span class="required">*</span></label>
                     {{ form.title }}
                 </div>
 
+                <!-- Category -->
                 <div class="form-group">
-                    <label for="{{ form.category.id_for_label }}">Category</label>
+                    <label for="{{ form.category.id_for_label }}">Category  <span class="required">*</span></label>
                     {{ form.category }}
                 </div>
 
+                <!-- Cover Image -->
                 <div class="form-group">
                     <label for="{{ form.image.id_for_label }}">Cover Image</label>
                     {{ form.image }}
                 </div>
 
+                <!-- Content -->
                 <div class="form-group">
-                    <label>Content</label>
+                    <label>Content  <span class="required">*</span></label>
+
+                    {% if form.content.errors %}
+                        <div class="field-error">
+                            {{ form.content.errors.0 }}
+                        </div>
+                    {% endif %}
 
                     <div id="editor"></div>
                     {{ form.content.as_hidden }}
@@ -52,21 +66,27 @@
 
                 <!-- Create Blog Actions Publish\Cancel Buttons -->
                 <div class="form-actions">
+
                     <button type="submit" class="btn-submit">
                         Publish 
                         <i class="fa-regular fa-paper-plane"></i>
                     </button>
+
                     <a href="{% url 'blog-list' %}" class="btn-submit btn-cancel">Cancel</a>
+
                 </div>
 
             </form>
+            
         </div>
         
     </div>  
+
 </section>
 
 <!-- Quill Editor Script -->
 <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+
 <script>
 
     const quill = new Quill('#editor', {
@@ -103,21 +123,13 @@
         }
     });
 
-    const toolbar = quill.getModule('toolbar');
-
-    toolbar.addHandler('undo', () => {
-        quill.history.undo();
-    });
-
-    toolbar.addHandler('redo', () => {
-        quill.history.redo();
-    });
-
     const form = document.querySelector('form');
 
     form.addEventListener('submit', function () {
+
         const content = quill.root.innerHTML;
         document.querySelector('#id_content').value = content;
+
     });
 
 </script>

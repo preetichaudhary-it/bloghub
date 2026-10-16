@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/about.css' %}">
 {% endblock %}
 
+{% block content %}
+
 <!-- About Page Hero section -->
 <section class="about-hero">
+
     <div class="about-hero-text">
+
         <p class="about-tag">ABOUT US</p>
         <h1>About BlogHub</h1>
         <span class="about-underline"></span>
@@ -21,15 +24,18 @@
         </p>
 
         <a href="{% url 'register' %}" class="about-cta">Join Our Community &rarr;</a>
+
     </div>
 
     <div class="about-hero-image">
         <img src="{% static 'images/about_hero.jpeg' %}" alt="Illustration of a BlogHub workspace">
     </div>
+
 </section>
 
 <!-- About Features -->
 <section class="about-features">
+
     <article class="feature-card">
         <div class="feature-icon">&#9998;</div>
         <h3>Write Blogs</h3>
@@ -53,11 +59,15 @@
         <h3>Connect</h3>
         <p>Join our community of writers and readers and grow together.</p>
     </article>
+
 </section>
 
 <!-- About Bottom -->
 <section class="about-banner">
+
     <p>&hearts; <strong>Share your story. Inspire others.</strong> &hearts;</p>
     <p class="about-banner-sub">BlogHub is more than just a platform, it's a community.</p>
+
 </section>
+
 {% endblock %} 

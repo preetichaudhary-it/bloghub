@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/user/profile.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
+
+{% block content %}
 
 <section class="dashboard-page">
 
@@ -14,23 +15,33 @@
         <!-- Sidebar -->
         <aside class="dashboard-sidebar">
 
+            <!-- Dashboard -->
             <a href="{% url 'profile' %}"
                class="sidebar-link {% if active_page == 'dashboard' %}active{% endif %}">
                 <i class="fa-solid fa-table-columns"></i>
                 Dashboard
             </a>
 
+            <!-- Create Blog -->
             <a href="{% url 'create-blog' %}" class="sidebar-link">
                 <i class="fa-solid fa-pen-to-square"></i>
                 Create Blog
             </a>
 
+            <!-- Edit Profile -->
             <a href="{% url 'edit-profile' %}"
                 class="sidebar-link {% if active_page == 'edit_profile' %}active{% endif %}">
                 <i class="fa-solid fa-user"></i>
                 Edit Profile
             </a>
 
+            <!-- Feedback -->
+            <a href="{% url 'feedback' %}" class="sidebar-link">
+                <i class="fa-solid fa-comment-dots"></i>
+                Share Feedback
+            </a>
+
+            <!-- Logout -->
             <a href="{% url 'logout' %}" class="sidebar-link logout-link">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 Logout
@@ -41,6 +52,7 @@
         <!-- Content -->
         <div class="dashboard-content">
 
+            <!-- Dashboard Heading -->
             <div class="dashboard-header">
                 <h1>Welcome, {{ user.username }}</h1>
                 <p>Manage your blogs and profile.</p>
@@ -52,7 +64,6 @@
                 <span>
                     {{ my_blog_count }}
                 </span>
-                
             </div>
 
             <!-- Blogs -->
@@ -64,32 +75,39 @@
 
                     {% for blog in my_blogs %}
 
+                    <!-- My Blogs Card -->
                     <div class="my-blog-card">
 
+                        <!-- Cover Image -->
                         {% if blog.image %}
                         <a href="{% url 'blog-detail' blog.id %}">
                             <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="dashboard-blog-image">
                         </a>
                         {% endif %}
 
+                        <!-- Title -->
                         <h2>
                             <a href="{% url 'blog-detail' blog.id %}" class="blog-title-link">
                                 {{ blog.title }}
                             </a>
                         </h2>
 
+                        <!-- Category -->
                         <span class="blog-category">
                             {{ blog.category }}
                         </span>
 
+                        <!-- Date -->
                         <p class="blog-date">
                             {{ blog.created_at|date:"d M Y" }}
                         </p>
 
+                        <!-- Preview -->
                         <p class="blog-preview">
                               {{ blog.content|striptags|safe|truncatewords:20 }}
                         </p>
 
+                        <!-- Blog Actions: View, Edit, Delete -->
                         <div class="blog-actions">
 
                             <a href="{% url 'blog-detail' blog.id %}">
@@ -115,12 +133,12 @@
 
                     </div>
 
+                    <!-- Empty state -->
                     {% empty %}
 
                     <div class="empty-dashboard">
 
-                        <h3>No Blogs Yet</h3>
-
+                        <h3>You haven't created any blogs yet.</h3>
                         <p>
                             Start sharing your ideas with the BlogHub community.
                         </p>

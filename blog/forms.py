@@ -19,10 +19,18 @@ class RegisterForm(UserCreationForm):
         ]
 
     def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if username.isdigit():
-            raise forms.ValidationError("Username cannot contain only numbers.")
-        
+        username = self.cleaned_data.get('username', '')
+
+        if ' ' in username:
+            raise forms.ValidationError(
+                "Username cannot contain spaces."
+            )
+
+        # if username.isdigit():
+        #     raise forms.ValidationError(
+        #         "Username cannot contain only numbers."
+        #     )
+
         return username
 
     def clean_email(self):

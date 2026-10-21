@@ -113,6 +113,11 @@
     font-weight: 500;
     line-height: 1.4;
 }
+/* required asterisk beside labels*/
+.required{  
+    color: #e53935;
+    font-weight: 700;
+}
 
 /*----------- Responsive (Tablet, Mobile, Small Mobile)---------- */
 @media(max-width: 1024px){

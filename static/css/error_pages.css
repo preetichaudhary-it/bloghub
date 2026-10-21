@@ -1,0 +1,95 @@
+/* =================== 404 Error Page =================== */
+
+.error-page {
+    min-height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: #faf8ff;
+    text-align: center;
+}
+
+.error-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.error-code {
+    font-size: clamp(80px, 15vw, 150px);
+    font-weight: 800;
+    line-height: 1;
+    color: #7b2ff7;
+    margin-bottom: 20px;
+}
+
+.error-container h1 {
+    color: #252033;
+    font-size: clamp(26px, 4vw, 38px);
+    margin-bottom: 16px;
+}
+
+.error-container p {
+    color: #6b6375;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.error-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.primary-btn {
+    background: #7b2ff7;
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background: #6420d5;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: #fff;
+    color: #7b2ff7;
+    border: 1px solid #7b2ff7;
+}
+
+.secondary-btn:hover {
+    background: #f3ecff;
+    color: #6420d5;
+}
+
+@media (max-width: 480px) {
+    .error-page {
+        padding: 45px 16px;
+    }
+
+    .error-actions {
+        flex-direction: column;
+    }
+
+    .error-btn {
+        width: 100%;
+        max-width: 280px;
+        box-sizing: border-box;
+    }
+}

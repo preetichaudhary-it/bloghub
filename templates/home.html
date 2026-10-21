@@ -104,7 +104,8 @@
 
                     <!-- Meta info -->
                     <div class="blog-meta">
-                        <span>By {{ blog.author }}</span>
+                        <!-- <span>By {{ blog.author }}</span> -->
+                        <span>By {{ blog.author.get_full_name|default:blog.author.username }}</span>
                         <span>
                             {{ blog.created_at|date:"d M Y" }}
                         </span>
@@ -112,7 +113,7 @@
 
                     <!-- Content -->
                     <p>
-                        {{ blog.content|striptags|safe|truncatewords:12 }}
+                        {{ blog.content|striptags|safe|truncatewords:18 }}
                     </p>
 
                     <!-- Read More link -->

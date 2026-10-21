@@ -35,7 +35,8 @@
              <!-- Meta: Author and Date -->
             <div class="blog-detail-meta">
                 <span>
-                    By {{ blog.author }}
+                    <!-- By {{ blog.author }} -->
+                    By {{ blog.author.get_full_name|default:blog.author.username }}
                 </span>
 
                 <span>

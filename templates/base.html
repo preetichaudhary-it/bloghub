@@ -50,7 +50,8 @@
                     
                     <button class="dropdown-btn">
                         <i class="fa-solid fa-user"></i>
-                        {{ user.username }}
+                        <!-- {{ user.username }} -->
+                        {{ request.user.first_name|default:request.user.username }}
                         <span class="down-menu-icon"><i class="fa-solid fa-caret-down"></i></span>
                     </button>
 

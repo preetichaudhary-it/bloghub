@@ -76,7 +76,11 @@
     text-decoration:none;
     font-weight:600;
 }
-
+/* required asterisk beside labels*/
+.required{  
+    color: #e53935;
+    font-weight: 700;
+}
 /* errors */
 .field-error{
     display:block;

@@ -3,9 +3,10 @@ from .forms import RegisterForm, BlogPostForm, EditProfileForm, ContactForm, Fee
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import BlogPost, Category, Contact, Feedback
+from .models import BlogPost, Category, Contact, Feedback, BlogUser
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.http import JsonResponse
 
 # =================== Home View ========================
 def home(request):
@@ -61,13 +62,16 @@ def login_view(request):
     if request.user.is_authenticated:
             return redirect('home')
 
+    if request.method == 'GET':
+        return render(request, 'login.html')
+
     # Default values for validation messages
     username_error = None
     password_error = None
     login_error = None
 
     # Keep username after an unsuccessful submission
-    username = ''
+    # username = ''
 
     if request.method == 'POST':
 
@@ -80,7 +84,7 @@ def login_view(request):
 
         # Password validation
         if not password:
-            password_error = "Password is required"
+            password_error = "Password is required."
 
         # Authentication 
         if not username_error and not password_error:
@@ -103,7 +107,7 @@ def login_view(request):
         request,
         'login.html',
         {
-            'username': username,
+            # 'username': username,
             'username_error': username_error,
             'password_error': password_error,
             'login_error': login_error,
@@ -441,3 +445,28 @@ def feedback(request):
         'user/feedback.html',
         context
     )
+
+# =================== Check Username View ========================
+def check_username(request):
+    username = request.GET.get('username', '').strip()
+
+    if not username:
+        return JsonResponse({
+            'available': False,
+            'message': ''
+        })
+
+    exists = BlogUser.objects.filter(
+        username=username
+    ).exists()
+
+    if exists:
+        return JsonResponse({
+            'available': False,
+            'message': 'This username already exists.'
+        })
+
+    return JsonResponse({
+        'available': True,
+        'message': ''
+    })

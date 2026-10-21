@@ -25,7 +25,7 @@
                 {% csrf_token %}
 
                 <!-- Username -->
-                <div class="register-input-group">
+                <!-- <div class="register-input-group">
                     <label>Username</label>
                     {{ form.username }}
 
@@ -34,11 +34,28 @@
                             {{ form.username.errors.0 }}
                         </small>
                     {% endif %}
+                </div> -->
+                <!-- Username -->
+                <div class="register-input-group">
+                    <label for="id_username">Username   <span class="required">*</span></label>
+                    {{ form.username }}
+
+                    {% if form.username.errors %}
+                        <small class="field-error" id="username-server-error">
+                            {{ form.username.errors.0 }}
+                        </small>
+                    {% endif %}
+
+                    <small
+                        class="field-error"
+                        id="username-live-error"
+                        aria-live="polite"
+                    ></small>
                 </div>
 
                 <!-- Email -->
                 <div class="register-input-group">
-                    <label>Email Address</label>
+                    <label>Email Address    <span class="required">*</span></label>
                     {{ form.email }}
 
                     {% if form.email.errors %}
@@ -50,7 +67,7 @@
 
                 <!-- Password -->
                 <div class="register-input-group">
-                    <label>Password</label>
+                    <label>Password     <span class="required">*</span></label>
                     {{ form.password1 }}
 
                     {% if form.password1.errors %}
@@ -62,7 +79,7 @@
 
                 <!-- Confirm Password -->
                 <div class="register-input-group">
-                    <label>Confirm Password</label>
+                    <label>Confirm Password     <span class="required">*</span></label>
                     {{ form.password2 }}
 
                     {% if form.password2.errors %}
@@ -90,5 +107,91 @@
         
     </div>
 </div>
+
+<script>
+    const usernameInput = document.getElementById('id_username');
+    const usernameError = document.getElementById('username-live-error');
+    const serverError = document.getElementById('username-server-error');
+
+    let usernameTimer;
+    let requestNumber = 0;
+
+    usernameInput.addEventListener('input', function () {
+        clearTimeout(usernameTimer);
+
+        // Hide the previous errors while the user is typing.
+        usernameError.textContent = '';
+
+        if (serverError) {
+            serverError.style.display = 'none';
+        }
+
+        const username = usernameInput.value;
+
+        // Wait until typing stops before validating.
+        usernameTimer = setTimeout(function () {
+            validateUsername(username);
+        }, 600);
+    });
+
+    async function validateUsername(username) {
+        const currentRequest = ++requestNumber;
+
+        if (!username) {
+            return;
+        }
+
+        // Check for spaces.
+        if (/\s/.test(username)) {
+            usernameError.textContent =
+                'Username cannot contain spaces.';
+            return;
+        }
+
+        // Check for numbers only.
+        // if (/^\d+$/.test(username)) {
+        //     usernameError.textContent =
+        //         'Username cannot contain only numbers.';
+        //     return;
+        // }
+
+        // Allow only Django's standard ASCII username characters.
+        if (!/^[A-Za-z0-9@.+_-]+$/.test(username)) {
+            usernameError.textContent =
+                'Username contains invalid characters. This value may contain only letters, numbers, and @/./+/-/_ characters.';
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                "{% url 'check-username' %}?username=" +
+                encodeURIComponent(username)
+            );
+
+            if (!response.ok) {
+                throw new Error('Username check failed.');
+            }
+
+            const data = await response.json();
+
+            // Ignore outdated responses from earlier requests.
+            if (
+                currentRequest !== requestNumber ||
+                usernameInput.value !== username
+            ) {
+                return;
+            }
+
+            if (!data.available) {
+                usernameError.textContent = data.message;
+            } else {
+                usernameError.textContent = '';
+            }
+
+        } catch (error) {
+            console.error('Username validation failed:', error);
+        }
+    }
+</script>
 
 {% endblock %}

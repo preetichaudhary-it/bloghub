@@ -21,14 +21,14 @@
             </p>
 
             <!-- Login Form -->
-            <form method="POST">
+            <form method="POST" autocomplete="off">
 
                 {% csrf_token %}
 
                 <!-- Username -->
                 <div class="input-group">
-                    <label>Username</label>
-                    <input type="text" name="username" placeholder="Enter username" value="{{ username }}" required>
+                    <label for="login-username">Username     <span class="required">*</span></label>
+                    <input type="text" id="login-username" name="username" placeholder="Enter username" autocomplete="off">
 
                     {% if username_error %}
                     <small class="field-error">
@@ -39,8 +39,8 @@
 
                 <!-- Password -->
                 <div class="input-group">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="Enter password" required>
+                    <label for="login-password">Password     <span class="required">*</span></label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter password" autocomplete="off">
 
                     {% if password_error %}
                     <small class="field-error">
@@ -80,5 +80,32 @@
 
     </div>
 </div>
+
+<script>
+    // Username validation message
+    const usernameInput = document.getElementById('login-username');
+    const passwordInput = document.getElementById('login-password');
+
+    usernameInput.addEventListener('input', function () {
+        const error = usernameInput
+            .closest('.input-group')
+            .querySelector('.field-error');
+
+        if (error && usernameInput.value.trim() !== '') {
+            error.remove();
+        }
+    });
+
+    // Password validation message
+    passwordInput.addEventListener('input', function () {
+        const error = passwordInput
+            .closest('.input-group')
+            .querySelector('.field-error');
+
+        if (error && passwordInput.value !== '') {
+            error.remove();
+        }
+    });
+</script>
 
 {% endblock %}

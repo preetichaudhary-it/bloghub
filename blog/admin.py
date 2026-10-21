@@ -48,6 +48,7 @@ class ContactAdmin(admin.ModelAdmin):
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = (
         'user',
+        'feedback',
         'created_at'
     )
 

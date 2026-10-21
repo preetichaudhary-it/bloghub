@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error | BlogHub</title><style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        background: #faf8ff;
+        color: #252033;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .error-container {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .logo {
+        font-size: 28px;
+        font-weight: 700;
+        color: #7b2ff7;
+        margin-bottom: 35px;
+    }
+
+    .error-code {
+        font-size: clamp(80px, 18vw, 140px);
+        font-weight: 800;
+        line-height: 1;
+        color: #7b2ff7;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: clamp(25px, 5vw, 36px);
+        margin: 0 0 16px;
+    }
+
+    p {
+        color: #6b6375;
+        font-size: 16px;
+        line-height: 1.8;
+        margin: 0 0 28px;
+    }
+
+    .home-btn {
+        display: inline-block;
+        padding: 13px 24px;
+        background: #7b2ff7;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: background 0.3s ease;
+    }
+
+    .home-btn:hover {
+        background: #6420d5;
+    }
+</style>
+
+</head><body>
+    <main class="error-container">
+        <div class="logo">BlogHub</div>    <div class="error-code">500</div>
+
+    <h1>Something Went Wrong</h1>
+
+    <p>
+        We're sorry! Something unexpected happened on our end.
+        Please try again in a little while.
+    </p>
+
+    <a href="/" class="home-btn">Back to Home</a>
+</main>
+
+</body>
+</html>
